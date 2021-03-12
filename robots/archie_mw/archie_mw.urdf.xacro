@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <robot name="archie_mw" xmlns:xacro="http://www.ros.org/wiki/xacro">
-
+<!-- ####### GITHUB UPLOAD TEST############# -->
   <!-- PROPERTIES -->
   <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/properties.xacro" />
   
