@@ -59,7 +59,7 @@
       <!-- <slip1> 0.1 </slip1> -->
       <mu1>0.0001</mu1>
       <mu2>0.0001</mu2>
-    <material>Gazebo/Blue</material>
+    <material>Gazebo/Grey</material>
     </gazebo>
 
   </xacro:macro>
