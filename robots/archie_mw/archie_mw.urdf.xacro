@@ -1,0 +1,236 @@
+<?xml version="1.0" ?>
+<robot name="archie_mw" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- PROPERTIES -->
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/properties.xacro" />
+  
+  <!-- MATERIALS -->
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/materials.xacro" />
+  
+  <!-- INERTIAL CALCULATIONS -->
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/inertial_calc_macros.xacro" />  
+
+  <!--GAZEBO REFERENCES -->
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/archie_mw_gazebo.xacro" />
+
+  <!-- BODY -->
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/archie_mw_body.xacro" />
+ 
+  <!-- WHEELS -->
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/omni_wheel.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/mecanum_wheel.xacro" />
+
+  <!-- SENSORS --> 
+  <!-- <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/sick_S300.xacro" /> -->
+
+  <!-- Microscan - Comment/Uncomment if required -->
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/micro_scan.xacro" /> 
+
+  <!--Ultrasonics, cameras and IMU's  -->
+  <!-->
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/imu.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/ultrasonic.xacro" />
+  <-->
+  <!-- <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/camera.xacro" />  -->
+  
+<!-- ################################################################################## -->
+    <!-- BASE-FOOTPRINT -->
+  <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin -->
+<!-- TODO Here base_link is used insted of base_footprint CHANGE THE TWO!!!  -->
+  <!-- <link name="base_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.01 0.01 0.01" />
+        </geometry>
+    <material name="Red"/>
+    </visual>
+  </link>
+
+  <gazebo reference="base_link">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo> -->
+  <link name="base_link" />
+
+  <!-- Base link macro -->
+  <xacro:archie_mw_base name="base_footprint" parent="base_link" lenght="${chassis_lenght}" 
+    width="${chassis_width}" height="${chassis_height}" mass="${chassis_weight}" 
+    color="Yellow" z_offset="${chassis_center_to_base_footprint_z_offset}">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:archie_mw_base>
+  
+
+<!--  -->
+
+  <!-- Wheel Macro -->
+
+  <xacro:mecanum_wheel_152 name="archie_mw_omni_wheel_front_left" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
+      mesh_file_name="package://archie_simulation/robots/archie_mw/meshes/mecanum_wheel_left.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
+      mesh_scale_y="${0.92*SCALE_mm_to_m}" mesh_scale_z="${1.52*SCALE_mm_to_m}">
+    <origin xyz="${left_front_wheel_x_offset} ${left_front_wheel_y_offset+shaft_lenght} ${left_front_wheel_z_offset}" rpy="0 0 0" />
+  </xacro:mecanum_wheel_152>
+
+  <xacro:mecanum_wheel_152 name="archie_mw_omni_wheel_front_right" parent="base_link" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
+      mesh_file_name="package://archie_simulation/robots/archie_mw/meshes/mecanum_wheel_right.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
+      mesh_scale_y="${0.92*SCALE_mm_to_m}" mesh_scale_z="${1.52*SCALE_mm_to_m}">
+    <origin xyz="${left_front_wheel_x_offset} ${-(left_front_wheel_y_offset+shaft_lenght)} ${left_front_wheel_z_offset}" rpy="0 0 0" />
+  </xacro:mecanum_wheel_152>
+
+  <xacro:mecanum_wheel_152 name="archie_mw_omni_wheel_back_left" parent="base_link" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
+      mesh_file_name="package://archie_simulation/robots/archie_mw/meshes/mecanum_wheel_left.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
+      mesh_scale_y="${0.92*SCALE_mm_to_m}" mesh_scale_z="${1.52*SCALE_mm_to_m}">
+    <origin xyz="${-left_front_wheel_x_offset} ${left_front_wheel_y_offset+shaft_lenght} ${left_front_wheel_z_offset}" rpy="0 0 0" />
+  </xacro:mecanum_wheel_152>
+
+  <xacro:mecanum_wheel_152 name="archie_mw_omni_wheel_back_right" parent="base_link" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
+      mesh_file_name="package://archie_simulation/robots/archie_mw/meshes/mecanum_wheel_right.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
+      mesh_scale_y="${0.92*SCALE_mm_to_m}" mesh_scale_z="${1.52*SCALE_mm_to_m}">
+    <origin xyz="${-left_front_wheel_x_offset} ${-(left_front_wheel_y_offset+shaft_lenght)} ${left_front_wheel_z_offset}" rpy="0 0 0" />
+  </xacro:mecanum_wheel_152>
+
+<!-- ####################### -->
+<!-- ${ROTATE_90_DEGREES} -->
+  <!-- <xacro:omni_wheel_250 name="archie_mw_omni_wheel_front_left" parent="base_footprint">
+    <origin xyz="0.25 0.28 0.13" rpy="0 0 0" />
+  </xacro:omni_wheel_250>
+
+  <xacro:omni_wheel_250 name="archie_mw_omni_wheel_front_right" parent="base_footprint">
+    <origin xyz="0.25 -0.28 0.13" rpy="0 0 3.14" />
+  </xacro:omni_wheel_250>
+
+  <xacro:omni_wheel_250 name="archie_mw_omni_wheel_back_left" parent="base_footprint">
+    <origin xyz="-0.25 0.28 0.13" rpy="0 0 0" />
+  </xacro:omni_wheel_250>
+
+  <xacro:omni_wheel_250 name="archie_mw_omni_wheel_back_right" parent="base_footprint">
+    <origin xyz="-0.25 -0.28 0.13" rpy="0 0 3.14" />
+  </xacro:omni_wheel_250> -->
+
+  <!-- Sensors -->
+  <xacro:sick_laser_v0 name="lidar_1" parent="base_link" ros_topic="lidar_1/scan_filtered">
+    <origin xyz="0.442 0 0.372" rpy="0 0 0" />
+  </xacro:sick_laser_v0>
+
+  <xacro:sick_laser_v0 name="lidar_2" parent="base_link" ros_topic="lidar_2/scan_filtered">
+    <origin xyz="-0.442 0 0.372" rpy="0 0 3.14" />
+  </xacro:sick_laser_v0>
+
+  <!--+++++++++++++++++++ IMU ++++++++++++++++++++++++-->
+  <!-- Comment or uncomment based on your requirement -->
+  <!-->
+  <xacro:imu name="imu" parent="base_link">
+    <origin xyz="0.100 0 0.300" rpy="0 0 3.14" />
+  </xacro:imu>
+  <-->
+
+  <!--+++++++++++++++++++ Ultra Sonic ++++++++++++++++++++++++-->
+  <!-- Comment or uncomment based on your requirement -->
+  <!-- SENSOR 1 --> 
+  <!-->
+  <xacro:us_sensor name="us_1" parent="base_link">
+    <origin xyz="0.100 0 0.500" rpy="0 3.14 3.14" />
+  </xacro:us_sensor>
+  <-->
+  <!-- SENSOR 2 --> 
+  <!-- xacro:us_sensor name="us_2" parent="base_link">
+    <origin xyz="0.110 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 3 --> 
+  <!-- xacro:us_sensor name="us_3" parent="base_link">
+    <origin xyz="0.120 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 4 --> 
+  <!-- xacro:us_sensor name="us_4" parent="base_link">
+    <origin xyz="0.130 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 5 --> 
+  <!-- xacro:us_sensor name="us_5" parent="base_link">
+    <origin xyz="0.140 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 6 --> 
+  <!-- xacro:us_sensor name="us_6" parent="base_link">
+    <origin xyz="0.150 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 7 --> 
+  <!-- xacro:us_sensor name="us_7" parent="base_link">
+    <origin xyz="0.160 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 8 --> 
+  <!-- xacro:us_sensor name="us_8" parent="base_link">
+    <origin xyz="0.170 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 9 --> 
+  <!-- xacro:us_sensor name="us_9" parent="base_link">
+    <origin xyz="0.180 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 10 --> 
+  <!-- xacro:us_sensor name="us_10" parent="base_link">
+    <origin xyz="0.100 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 11 --> 
+  <!-- xacro:us_sensor name="us_11" parent="base_link">
+    <origin xyz="0.100 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 12 --> 
+  <!-- xacro:us_sensor name="us_12" parent="base_link">
+    <origin xyz="0.190 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 13 --> 
+  <!-- xacro:us_sensor name="us_13" parent="base_link">
+    <origin xyz="0.200 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 14 --> 
+  <!-- xacro:us_sensor name="us_14" parent="base_link">
+    <origin xyz="0.210 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 15 --> 
+  <!-- xacro:us_sensor name="us_15" parent="base_link">
+    <origin xyz="0.220 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 16 --> 
+  <!-- xacro:us_sensor name="us_16" parent="base_link">
+    <origin xyz="0.230 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+    
+  <!--Camera  -->
+<!-- <xacro:camera name="camera" parent="base_link">
+    <origin xyz="0 0 0.38" rpy="0 0 0" />
+  </xacro:camera> -->
+
+  <transmission name="archie_mw_omni_wheel_front_left">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="archie_mw_omni_wheel_front_left_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="archie_mw_omni_wheel_front_left_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="archie_mw_omni_wheel_front_right">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="archie_mw_omni_wheel_front_right_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="archie_mw_omni_wheel_front_right_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="archie_mw_omni_wheel_back_left">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="archie_mw_omni_wheel_back_left_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="archie_mw_omni_wheel_back_left_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="archie_mw_omni_wheel_back_right">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="archie_mw_omni_wheel_back_right_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="archie_mw_omni_wheel_back_right_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+</robot>

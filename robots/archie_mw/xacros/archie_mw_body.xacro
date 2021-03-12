@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="archie_mw">
+
+  <xacro:macro name="archie_mw_base" params="name parent *origin lenght width height mass color z_offset">
+   
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+        <axis xyz="0 0 -1" />
+      <!-- <limit effort="1000.0" lower="-1e+16" upper="1e+16" velocity="3.5"/> -->
+      <joint_properties damping="1" friction="1" />
+      <parent link="${parent}" />
+      <child link="${name}" />
+   </joint>
+
+   <link name="${name}">
+      <visual>
+        <!-- <origin xyz="0. 0. 0" rpy="-1.571 0 1.571" /> -->
+        <!-- <origin xyz="0. 0. 0.1" rpy="0 0 0" /> -->
+        <origin xyz="0 0 ${z_offset}" rpy="0 0 0" />
+          <geometry>
+            <box size="${lenght} ${width} ${height}"/>
+            <!-- <mesh filename="package://archie_simulation/robots/archie_mw/meshes/archie_mw_full_body.STL" scale="0.01 0.01 0.01"/> -->
+          </geometry>
+        <material name="${color}" />
+      </visual>
+
+      <collision>
+        <!-- <origin xyz="0. 0. 0.0" rpy="-1.571 0 1.571" />       -->
+        <origin xyz="0 0 ${z_offset}" rpy="0 0 0" />
+        <geometry>
+            <box size="${lenght} ${width} ${height}"/>
+           <!-- <mesh filename="package://archie_simulation/robots/archie_mw/meshes/MPO-500-BODY.dae" scale="0.001 0.001 0.001"/> -->
+        </geometry>
+      </collision>
+         
+    <inertial>
+      <mass value="${mass}" />
+      <origin xyz="0 0 ${z_offset}" rpy="0 0 0" />
+      <inertia ixx="${0.0833333 * mass * (width*width + height*height)}" ixy="0.0" ixz="0.0"
+        iyy="${0.0833333 * mass * (lenght*lenght + height*height)}" iyz="0.0"
+        izz="${0.0833333 * mass * (lenght*lenght + width*width)}" />
+    </inertial>
+
+    </link>
+
+  </xacro:macro>
+  
+</robot>

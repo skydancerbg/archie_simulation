@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mpo_500">
+
+  <xacro:macro name="mpo_500_base" params="name parent *origin z_offset width lenght height mass color">
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <axis xyz="0 0 -1" />
+      <!-- <limit effort="1000.0" lower="-1e+16" upper="1e+16" velocity="3.5"/> -->
+      <joint_properties damping="1" friction="1" />
+      <parent link="${parent}" />
+      <child link="${name}" />
+   </joint>
+
+    <link name="${name}">
+      <!-- <inertial>
+        <mass value="16"/>
+        <origin xyz="0 0.0 0.0" />
+         <inertia ixx="2.8" ixy="0.0" ixz="0.0"
+                 iyy="2.8" iyz="0.0" 
+                 izz="2.8" /> -->
+
+        <xacro:box_inertial_with_origin x="${lenght}" y="${width}" z="${height}" mass="${mass}">
+          <origin xyz="0 0 ${z_offset}" rpy="0 0 0" />
+        </xacro:box_inertial_with_origin>
+
+      <!-- </inertial>       -->
+      
+      <visual>
+        <!-- <origin xyz="0. 0. 0" rpy="-1.571 0 1.571" /> -->
+        <origin xyz="0. 0. ${z_offset}" rpy="0 0 0" />
+        <geometry>
+            <!-- <mesh filename="package://archie_simulation/robots/mpo_500/meshes/MPO-500-BODY.dae" scale="0.001 0.001 0.001"/> -->
+          <!--<box size="0.68 0.41 0.25"/> -->
+            <box size="${lenght} ${width} ${height}"/>
+        </geometry>
+    <material name="${color}">
+      <!-- <color rgba="0.4 0.4 0.4 1.0" /> -->
+    </material>        
+      </visual>
+
+      <collision>
+        <!-- <origin xyz="0. 0. 0.0" rpy="-1.571 0 1.571" /> -->
+        <origin xyz="0. 0. ${z_offset}" rpy="0 0 0" />
+
+        <geometry>
+          <!--<box size="0.68 0.41 0.25"/> -->
+           <!-- <mesh filename="package://archie_simulation/robots/mpo_500/meshes/MPO-500-BODY.dae" scale="0.001 0.001 0.001"/> -->
+          <box size="${lenght} ${width} ${height}"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- <gazebo reference="${name}_link"> -->
+    <gazebo reference="${name}"> 
+
+      <!-- <material>Gazebo/DarkGrey</material> -->
+      <material>Gazebo/Yellow</material>
+    </gazebo>
+  
+  
+  </xacro:macro>
+  
+</robot>

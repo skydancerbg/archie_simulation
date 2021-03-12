@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="properties">
+
+<!-- Properties file for archie_mw robot -->
+<!-- Created by Stefan -->
+<!-- IICT-BAS BG - Version 1.0 from Feb. 15-th, 2021. -->
+
+
+    <!-- ####### GENERIC CONSTANTS ##### -->
+
+    <!--All units in m-kg-s-radians unit system -->
+
+    <xacro:property name="PI" value="3.1415" />
+    <xacro:property name="M_PI" value="3.14159265358979323846264338327950288419716" />
+    <!--<xacro:property name="M_PI" value="3.1415926535897931" />-->
+    <xacro:property name="ROTATE_90_DEGREES" value="1.570796327" /> <!--pi/2-->
+    <xacro:property name="ROTATE_180_DEGREES" value="3.1415926535" /> <!--pi-->
+    <xacro:property name="DEG_to_RAD" value="0.017453293" />
+    <xacro:property name="SCALE_in_to_m" value="0.0254"/> <!--inches to meters-->
+    <xacro:property name="SCALE_mm_to_m" value="0.001"/> <!--milimeters to meters-->
+    <xacro:property name="kgcm_to_nm" value="0.0980665" />
+    <xacro:property name="gram_to_kg" value="0.001" />
+
+
+    <!-- ####### "OFF THE SHELVE" ROBOT CHASSIS DIMENSIONS ##### -->
+
+    <!-- ORIGINAL CHASSIS DIMENSIONS  --> 
+    <xacro:property name="chassis_lenght" value="${675*SCALE_mm_to_m}" />
+    <xacro:property name="chassis_width" value="${530*SCALE_mm_to_m}" />
+    <xacro:property name="chassis_height" value="${89*SCALE_mm_to_m}" />
+    <xacro:property name="chassis_half_height" value="${chassis_height/2}" />  <!-- 34.5 *SCALE_mm_to_m-->
+    <xacro:property name="chassis_weight" value="${19.0-4*0.7}" /> <!-- in kg-->
+    <!-- Chassis: distance from the ground to bottom -->
+    <xacro:property name="chassis_bottom_z_offset" value="${40.2*SCALE_mm_to_m}" /> 
+    <!-- <xacro:property name="chassis_center_to_base_footprint_z_offset" value="${40.2*SCALE_mm_to_m + chassis_half_height}" />  -->
+    <!-- <xacro:property name="chassis_center_to_base_footprint_z_offset" value="${86.2*SCALE_mm_to_m + chassis_half_height}" />  -->
+    <xacro:property name="chassis_center_to_base_footprint_z_offset" value="${86.2*SCALE_mm_to_m}" />  <!--- From the ground to the middle of the chassis-->
+
+    <!-- MOTOR WITH SUPPORT AND ELASTIC CLUTCH COUPLER DIMENSIONS  -->
+    <!--  2.16 Kg - approximate with a box: h: 69 w: 60 l: 71+133.5+19 =223.5-->
+    <xacro:property name="motor_assy_width" value="${60*SCALE_mm_to_m}" />
+    <xacro:property name="motor_assy_height" value="${69*SCALE_mm_to_m}" />
+    <xacro:property name="motor_assy_lenght" value="${223.5*SCALE_mm_to_m}" />
+
+    <!-- FLANGE / WHEEL HINGE -->
+    <!--  0.06 Kg - approximate with cylinder d56.8 h26.4+5=31.4 -->
+    <xacro:property name="wheel_flange_diameter" value="${56.8*SCALE_mm_to_m}" />
+    <xacro:property name="wheel_flange_lenght" value="${31.4*SCALE_mm_to_m}" />
+
+    <!-- MECANUM WHEEL  SHAFT-->
+    <xacro:property name="shaft_diameter" value="${30.0*SCALE_mm_to_m}" />
+    <xacro:property name="shaft_radius" value="${shaft_diameter/2}" />
+    <!-- <xacro:property name="shaft_lenght" value="${23*SCALE_mm_to_m}" /> -->
+    <xacro:property name="shaft_lenght" value="${23.0*SCALE_mm_to_m}" />
+    <xacro:property name="shaft_half_lenght" value="${shaft_lenght/2}" />
+    <xacro:property name="shaft_mass" value="0.06" /> <!-- in kg-->
+    <xacro:property name="shaft_x_offset" value="${307.5*SCALE_mm_to_m}" />
+    <xacro:property name="shaft_y_offset" value="${265*SCALE_mm_to_m}" />
+    <!-- <xacro:property name="shaft_z_offset" value="${34.5*SCALE_mm_to_m}" /> -->
+    <xacro:property name="shaft_z_offset" value="${72.6*SCALE_mm_to_m}" /> <!--- From the ground to the middle of the shaft-->
+
+    <!-- MECANUM WHEELS -->
+    <xacro:property name="wheel_diameter" value="${6*SCALE_in_to_m}" />
+    <xacro:property name="wheel_radius" value="${wheel_diameter/2}" />
+    <xacro:property name="wheel_width" value="${46*SCALE_mm_to_m}" />
+    <xacro:property name="wheel_weight" value="0.820" /> <!--  in kg - TODO: CHECK THE NUMBER AGAIN /> -->
+
+    <xacro:property name="left_front_wheel_x_offset" value="${307.5*SCALE_mm_to_m}" />
+    <xacro:property name="left_front_wheel_y_offset" value="${288.645468*SCALE_mm_to_m}" />
+    <!-- <xacro:property name="left_front_wheel_z_offset" value="${34.5*SCALE_mm_to_m}" /> -->
+    <xacro:property name="left_front_wheel_z_offset" value="${72.6*SCALE_mm_to_m}" /> <!--- From the ground to the middle of the wheel-->
+
+
+
+
+    
+    <!-- EUROPEAN STANDARD 2020 ALUMINIUM EXTRUSION PROFILE DIMENSIONS  --> 
+    <xacro:property name="profile_2020_width" value="${20*SCALE_mm_to_m}" />
+    <xacro:property name="profile_2020_height" value="${20*SCALE_mm_to_m}" />
+    <!-- 2020 1 Meter weights 0.55 kg/m --> <!-- CHECK THE WIGHT FOR THE ACTUAL 2020 PROFILE USED -->
+    <xacro:property name="profile_2020_weight_per_mm_lenght" value="${0.55/1000}" /> <!-- in kg/mm-->
+
+    <!-- EUROPEAN STANDARD 2060 ALUMINIUM EXTRUSION PROFILE DIMENSIONS  --> 
+    <xacro:property name="profile_2060_width_horizontal" value="${60*SCALE_mm_to_m}" />
+    <xacro:property name="profile_2060_height_horizontal" value="${20*SCALE_mm_to_m}" />
+    <xacro:property name="profile_2060_width_vertical" value="${20*SCALE_mm_to_m}" />
+    <xacro:property name="profile_2060_height_vertical" value="${60*SCALE_mm_to_m}" />
+  <!-- 2060 1 Meter wights 1.21 kg/m --> <!-- CHECK THE WIGHT FOR THE ACTUAL 2060 PROFILE USED -->
+    <xacro:property name="profile_2060_weight_per_mm_lenght" value="${1.21/1000}" /> <!-- in kg/mm-->
+
+<!-- ####### END ROBOT PARTS DIMENSIONS AND CONSTANTS ##### -->
+
+<!--###################################################################################-->
+<!--###################################################################################-->  
+
+<!-- ####### SENSORS ##### -->
+
+  <!-- RPLIDAR A2  -->
+  <xacro:property name="rplidar_diameter" value="${0.0757}" />
+  <xacro:property name="rplidar_height_of_laser_beam_plane" value="${0.0308}" />
+  <xacro:property name="rplidar_height" value="${0.0408}" />
+  <!-- <xacro:property name="rplidar_X_offset" value="${round_plate_radius-rplidar_diameter/2-0.01}" />
+  <xacro:property name="rplidar_Y_offset" value="${0.0}" />
+  <xacro:property name="rplidar_Z_offset" value="${round_plate_height+rplidar_height_of_laser_beam_plane}" />
+  <xacro:property name="rplidar_mesh_X_offset" value="${0.0}" />
+  <xacro:property name="rplidar_mesh_Y_offset" value="${-rplidar_diameter/2 + 0.007}" />
+  <xacro:property name="rplidar_mesh_Z_offset" value="${-rplidar_height_of_laser_beam_plane}" /> -->
+  
+
+    <!-- CAMERA -->
+  <xacro:property name="cameraSize" value="${0.05}"/>
+  <xacro:property name="cameraMass" value="${0.1}"/>
+
+<!--###################################################################################-->
+
+</robot>
