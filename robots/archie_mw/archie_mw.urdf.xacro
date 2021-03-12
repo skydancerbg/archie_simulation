@@ -61,9 +61,21 @@
   </xacro:archie_mw_base>
   
 
-<!--  -->
+<!-- **** ELECTRONICS BOX (MODULE) - height 100 mm ****  -->
+<!-- /batteries height is 76 mm whenlaying on the side. -->
+<!-- can accomadete, not only Raspberry PI 4 with passive cooling case,  -->
+<!-- but also  Intel NUC in the big case 51 mm height/ -->
 
-  <!-- Wheel Macro -->
+<!-- ! The Joint is positioned on top plane of the chassis (base_link) module -->
+  <xacro:fixed_joint name="electronics_box" parent_name="base_footprint" child_name="electronics_box" color="Grey">
+    <origin xyz="0 0 ${(chassis_center_to_base_footprint_z_offset + chassis_half_height)}" rpy="0 0 0" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="electronics_box" lenght="${electronics_box_lenght}" width="${electronics_box_width}" height="${electronics_box_height}" mass="${electronics_box_weight}" color="Light_grey">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link>
+
+  <!-- Invoke Wheel Macros -->
 
   <xacro:mecanum_wheel_152 name="archie_mw_mecanum_wheel_front_left" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
       mesh_file_name="package://archie_simulation/robots/archie_mw/meshes/mecanum_wheel_left.STL" mesh_scale_x="${1*SCALE_mm_to_m}"

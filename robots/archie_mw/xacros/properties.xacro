@@ -36,6 +36,13 @@
     <!-- <xacro:property name="chassis_center_to_base_footprint_z_offset" value="${86.2*SCALE_mm_to_m + chassis_half_height}" />  -->
     <xacro:property name="chassis_center_to_base_footprint_z_offset" value="${86.2*SCALE_mm_to_m}" />  <!--- From the ground to the middle of the chassis-->
 
+  <!-- ELECTRONICS BOX DIMENSIONS  -->
+    <xacro:property name="electronics_box_lenght" value="${chassis_lenght}" />
+    <xacro:property name="electronics_box_width" value="${chassis_width}" /> 
+    <xacro:property name="electronics_box_height" value="${100*SCALE_mm_to_m}" /> 
+    <xacro:property name="electronics_box_half_height" value="${electronics_box_height/2}" />  
+    <xacro:property name="electronics_box_weight" value="${15}" /> <!-- in kg-->
+
     <!-- MOTOR WITH SUPPORT AND ELASTIC CLUTCH COUPLER DIMENSIONS  -->
     <!--  2.16 Kg - approximate with a box: h: 69 w: 60 l: 71+133.5+19 =223.5-->
     <xacro:property name="motor_assy_width" value="${60*SCALE_mm_to_m}" />

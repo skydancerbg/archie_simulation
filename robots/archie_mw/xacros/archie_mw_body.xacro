@@ -45,10 +45,56 @@
           <origin xyz="0 0 ${z_offset}" rpy="0 0 0" />
         </xacro:box_inertial_with_origin>
       </inertial> -->
-
-
     </link>
-
   </xacro:macro>
-  
+
+
+    <!-- #### FIXED JOINT MACRO #### -->
+    <xacro:macro name="fixed_joint" params="name parent_name child_name color *origin">
+      <joint name="${name}_joint" type="fixed">
+        <parent link="${parent_name}"/>
+        <child link="${child_name}"/>
+        <xacro:insert_block name="origin" />
+      </joint>
+    </xacro:macro>
+
+      <!-- #### BOX MACRO #### -->
+    <xacro:macro name="box_link" params="name lenght width height mass color *origin">
+      <link name="${name}">
+        <visual>
+        <!-- The chassis is represented with a box and the origin of that box is in it's center. 
+        That's why, in order to visualize properly, we need to add half of the box height to 
+        the distance from the ground allready defined in the joint. -->
+          <origin xyz="0 0 ${height/2}" rpy="0 0 0" />
+          <geometry>
+            <!-- <mesh filename="package://archie_simulation/robots/archie_mw/meshes/archie_electronics_link.STL" scale="0.001 0.001 0.001"/> -->
+            <box size="${lenght} ${width} ${height}"/>
+          </geometry>
+          <!-- <material name="light_grey" /> -->
+          <material name="${color}" />
+        </visual>
+
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <box size="${lenght} ${width} ${height}"/>
+          </geometry>
+        </collision>
+
+          <!-- Ivoke box_inertial_with_origin macro -->
+        <!-- <xacro:box_inertial_with_origin x="${lenght}" y="${width}" z="${height}" mass="${mass}">
+          <origin xyz="0 0 0" rpy="0 0 0" />
+        </xacro:box_inertial_with_origin> -->
+        <inertial>
+          <mass value="${mass}" />
+          <!-- <origin xyz="0 0 ${z_offset}" rpy="0 0 0" /> -->
+          <!-- ! Should we offset to the center of the box here??????????? -->
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <inertia ixx="${0.0833333 * mass * (width*width + height*height)}" ixy="0.0" ixz="0.0"
+            iyy="${0.0833333 * mass * (lenght*lenght + height*height)}" iyz="0.0"
+            izz="${0.0833333 * mass * (lenght*lenght + width*width)}" />
+        </inertial>
+      </link>
+    </xacro:macro> 
+
 </robot>
