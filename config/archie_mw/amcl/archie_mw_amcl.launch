@@ -2,21 +2,21 @@
 
 <launch>
 
-  <!-- <arg name="env_map" default="$(find neo_simulation)/maps/$(env MAP_NAME).yaml" /> -->
+  <!-- <arg name="env_map" default="$(find archie_simulation)/maps/$(env MAP_NAME).yaml" /> -->
   <!-- MAP SERVER -->
   <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(arg env_map)">
   </node> -->
 
 <!-- Start Stefan: -->
   <!-- Map server -->
-  <arg name="map_file" default="$(find neo_simulation)/maps/neo_workshop.yaml"/>
+  <arg name="map_file" default="$(find archie_simulation)/maps/neo_workshop.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 <!-- End Stefan -->
 
 
   <node pkg="amcl" type="amcl" name="amcl">
   	<remap from="scan" to="lidar_1/scan_filtered"/>
-  	<rosparam file="$(find neo_simulation)/config/archie_mw/amcl/amcl_config.yaml" command="load" />
+  	<rosparam file="$(find archie_simulation)/config/archie_mw/amcl/amcl_config.yaml" command="load" />
   </node>
 
 </launch>

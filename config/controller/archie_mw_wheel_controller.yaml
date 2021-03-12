@@ -14,19 +14,19 @@ archie_mw_caster_back_right_controller:
     type: position_controllers/JointPositionController
     joint: archie_mw_caster_back_right_joint
 
-archie_mw_wheel_front_left_controller:
+archie_mw_omni_wheel_front_left_controller:
     type: velocity_controllers/JointVelocityController
     joint: archie_mw_wheel_front_left_joint
 
-archie_mw_wheel_front_right_controller:
+archie_mw_omni_wheel_front_right_controller:
     type: velocity_controllers/JointVelocityController
     joint: archie_mw_wheel_front_right_joint
 
-archie_mw_wheel_back_left_controller:
+archie_mw_omni_wheel_back_left_controller:
     type: velocity_controllers/JointVelocityController
     joint: archie_mw_wheel_back_left_joint
 
-archie_mw_wheel_back_right_controller:
+archie_mw_omni_wheel_back_right_controller:
     type: velocity_controllers/JointVelocityController
     joint: archie_mw_wheel_back_right_joint
 

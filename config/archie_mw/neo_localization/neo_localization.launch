@@ -2,7 +2,7 @@
 
 <launch>
 
-  <arg name="env_map" default="$(find neo_simulation)/maps/$(env MAP_NAME).yaml" />
+  <arg name="env_map" default="$(find archie_simulation)/maps/$(env MAP_NAME).yaml" />
 
   <!-- MAP SERVER -->
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg env_map)">
@@ -15,7 +15,7 @@
   <!-- Localization Node -->
   <node pkg="neo_localization" type="neo_localization_node" name="neo_localization_node" output="screen">
 
-    <rosparam file="$(find neo_simulation)/config/mpo_700/neo_localization/neo_localization.yaml" command="load" />
+    <rosparam file="$(find archie_simulation)/config/mpo_700/neo_localization/neo_localization.yaml" command="load" />
 
   </node>
 
