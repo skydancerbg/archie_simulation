@@ -54,7 +54,7 @@
       <real_time>151 139215044</real_time>
       <wall_time>1592070340 176042788</wall_time>
       <iterations>15065</iterations>
-      <model name='Ar_tags'>
+      <model name='Ar_tags_2'>
         <pose frame=''>-5.5463 -2.89682 0.451768 -1.57939 0.005995 -1.6128</pose>
         <scale>1 1 1</scale>
         <link name='link_1'>
@@ -3873,21 +3873,21 @@
       </link>
       <pose frame=''>15.6163 -0.783534 0 0 -0 0</pose>
     </model>
-    <model name='Ar_tags'>
+    <model name='Ar_tags_2'>
       <link name='link_1'>
         <visual name='visual'>
           <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://Ar_tags/meshes/Ar_tag.dae</uri>
+              <uri>model://Ar_tags_2/meshes/Ar_tag.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
           <material>
             <script>
-              <uri>model://Ar_tags/materials/scripts</uri>
-              <uri>model://Ar_tags/materials/textures</uri>
-              <name>Ar_tags</name>
+              <uri>model://Ar_tags_2/materials/scripts</uri>
+              <uri>model://Ar_tags_2/materials/textures</uri>
+              <name>Ar_tags_2</name>
             </script>
           </material>
           <cast_shadows>1</cast_shadows>
@@ -3899,7 +3899,7 @@
           <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>model://Ar_tags/meshes/Ar_tag.dae</uri>
+              <uri>model://Ar_tags_2/meshes/Ar_tag.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>

@@ -21,6 +21,9 @@
   <!-- <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/omni_wheel.xacro" /> -->
   <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/mecanum_wheel.xacro" />
 
+  <!--DOCKING ADAPTER  -->
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/docking_adapter.xacro" />
+
   <!-- SENSORS --> 
   <!-- <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/sick_S300.xacro" /> -->
 
@@ -28,6 +31,9 @@
   <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/micro_scan.xacro" /> 
 
   <!--Ultrasonics, cameras and IMU's  -->
+  <!-- Depth Camera Realsense d435i-->
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/depth_camera.xacro" /> 
+
   <!-->
   <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/imu.xacro" />
   <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/ultrasonic.xacro" />
@@ -67,8 +73,10 @@
 <!-- but also  Intel NUC in the big case 51 mm height/ -->
 
 <!-- ! The Joint is positioned on top plane of the chassis (base_link) module -->
-  <xacro:fixed_joint name="electronics_box" parent_name="base_footprint" child_name="electronics_box" color="Grey">
-    <origin xyz="0 0 ${(chassis_center_to_base_footprint_z_offset + chassis_half_height)}" rpy="0 0 0" />
+  <!-- <xacro:fixed_joint name="electronics_box" parent_name="base_footprint" child_name="electronics_box" color="Grey">
+    <origin xyz="0 0 ${electronics_box_z_offset}" rpy="0 0 0" /> -->
+  <xacro:fixed_joint name="electronics_box" parent_name="base_link" child_name="electronics_box" color="Grey">
+    <origin xyz="0 0 ${130.7*SCALE_mm_to_m}" rpy="0 0 0" />
   </xacro:fixed_joint>
 
   <xacro:box_link name="electronics_box" lenght="${electronics_box_lenght}" width="${electronics_box_width}" height="${electronics_box_height}" mass="${electronics_box_weight}" color="Light_grey">
@@ -101,16 +109,41 @@
     <origin xyz="${-left_front_wheel_x_offset} ${-(left_front_wheel_y_offset+shaft_lenght)} ${left_front_wheel_z_offset}" rpy="0 0 0" />
   </xacro:mecanum_wheel_152>
 
+<!--Docking adapter Macro  -->
+  <xacro:docking_adapter name="docking_adapter" parent="base_link">
+    <origin xyz="-0.300 0 0.320" rpy="0 0 -1.57" />
+  </xacro:docking_adapter>
+
+
 <!-- ####################### -->
 
   <!-- Sensors -->
+  <xacro:fixed_joint name="rplidar_a2_laser_beam_joint" parent_name="electronics_box" child_name="rplidar_a2_laser_beam_link" color="Red">
+    <origin xyz="${rplidar_a2_laser_beam_joint_x_offset} ${rplidar_a2_laser_beam_joint_y_offset} ${electronics_box_height}" rpy="0 0 ${ROTATE_180_DEGREES}" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="rplidar_a2_laser_beam_link" lenght="${0.041}" width="${0.041}" height="${0.001}" mass="${0.005}" color="Red">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link>
+
+  <!-- <xacro:fixed_joint name="rplidar_a2_laser_beam_fom_base_link_joint" parent_name="base_link" child_name="rplidar_a2_laser_beam_fom_base_link_link" color="Red">
+    <origin xyz="${rplidar_a2_laser_beam_joint_x_offset} ${rplidar_a2_laser_beam_joint_y_offset} ${230.7*SCALE_mm_to_m}" rpy="0 0 ${ROTATE_180_DEGREES}" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="rplidar_a2_laser_beam_fom_base_link_link" lenght="${0.060}" width="${0.02}" height="${0.001}" mass="${0.005}" color="Green">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link> -->
+
+
+
+
   <xacro:sick_laser_v0 name="lidar_1" parent="base_link" ros_topic="lidar_1/scan_filtered">
     <origin xyz="0.442 0 0.372" rpy="0 0 0" />
   </xacro:sick_laser_v0>
-<!-- 
+
   <xacro:sick_laser_v0 name="lidar_2" parent="base_link" ros_topic="lidar_2/scan_filtered">
     <origin xyz="-0.442 0 0.372" rpy="0 0 3.14" />
-  </xacro:sick_laser_v0> -->
+  </xacro:sick_laser_v0>
 
   <!--+++++++++++++++++++ IMU ++++++++++++++++++++++++-->
   <!-- Comment or uncomment based on your requirement -->
@@ -194,6 +227,15 @@
     <origin xyz="0 0 0.38" rpy="0 0 0" />
   </xacro:camera> -->
 
+  <!-- Depth Camera -->
+  <xacro:depth_camera name="camera" parent="base_link">
+    <origin xyz="-0.228 0.015 0.461" rpy="0 0 3.14159" />
+  </xacro:depth_camera>
+
+
+
+  <!-- TRANSMISSIONS -->
+
   <transmission name="archie_mw_mecanum_wheel_front_left">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="archie_mw_mecanum_wheel_front_left_joint">
@@ -230,4 +272,5 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  
 </robot>

@@ -40,7 +40,8 @@
     <xacro:property name="electronics_box_lenght" value="${chassis_lenght}" />
     <xacro:property name="electronics_box_width" value="${chassis_width}" /> 
     <xacro:property name="electronics_box_height" value="${100*SCALE_mm_to_m}" /> 
-    <xacro:property name="electronics_box_half_height" value="${electronics_box_height/2}" />  
+    <xacro:property name="electronics_box_half_height" value="${electronics_box_height/2}" />
+    <xacro:property name="electronics_box_z_offset" value="${chassis_center_to_base_footprint_z_offset + chassis_half_height}" />        
     <xacro:property name="electronics_box_weight" value="${15}" /> <!-- in kg-->
 
     <!-- MOTOR WITH SUPPORT AND ELASTIC CLUTCH COUPLER DIMENSIONS  -->
@@ -67,7 +68,8 @@
     <xacro:property name="shaft_z_offset" value="${72.6*SCALE_mm_to_m}" /> <!--- From the ground to the middle of the shaft-->
 
     <!-- MECANUM WHEELS -->
-    <xacro:property name="wheel_diameter" value="${6*SCALE_in_to_m}" />
+    <!-- <xacro:property name="wheel_diameter" value="${6*SCALE_in_to_m}" /> -->
+    <xacro:property name="wheel_diameter" value="${152.4*SCALE_mm_to_m}" />
     <xacro:property name="wheel_radius" value="${wheel_diameter/2}" />
     <xacro:property name="wheel_width" value="${46*SCALE_mm_to_m}" />
     <xacro:property name="wheel_weight" value="0.820" /> <!--  in kg - TODO: CHECK THE NUMBER AGAIN /> -->
@@ -77,7 +79,15 @@
     <!-- <xacro:property name="left_front_wheel_z_offset" value="${34.5*SCALE_mm_to_m}" /> -->
     <xacro:property name="left_front_wheel_z_offset" value="${72.6*SCALE_mm_to_m}" /> <!--- From the ground to the middle of the wheel-->
 
+    <!-- SENSORS -->
 
+    <xacro:property name="rplidar_a2_laser_beam_joint_x_offset" value="${0}" />
+    <xacro:property name="rplidar_a2_laser_beam_joint_y_offset" value="${0}" />
+    <xacro:property name="rplidar_a2_laser_beam_joint_z_offset" value="${electronics_box_z_offset+electronics_box_half_height+41*SCALE_mm_to_m}" /> <!--  From the electronics box middle point /> -->
+
+    <xacro:property name="rplidar_a2_mesh_X_offset" value="${*SCALE_mm_to_m}" />
+    <xacro:property name="rplidar_a2_mesh_Y_offset" value="${*SCALE_mm_to_m}" />
+    <xacro:property name="rplidar_a2_mesh_Z_offset" value="${*SCALE_mm_to_m}" />
 
 
     

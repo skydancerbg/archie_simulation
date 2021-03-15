@@ -5,7 +5,7 @@
    
     <joint name="${name}_joint" type="fixed">
       <xacro:insert_block name="joint_origin" />
-        <axis xyz="0 0 -1" />
+        <!-- <axis xyz="0 0 -1" />   remove this???????????? -->
       <!-- <limit effort="1000.0" lower="-1e+16" upper="1e+16" velocity="3.5"/> -->
       <joint_properties damping="1" friction="1" />
       <parent link="${parent}" />

@@ -69,6 +69,12 @@
    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_keyboard"  output="screen">
   </node>
  </group>
+ <!-- Stefan: -->
+ <!--if arg joystick is set to true-->
+  <!-- <group if="$(arg joystick)">
+    <include file="$(find neo_mpo_700)/configs/teleop/teleop.launch"/>  
+  </group> -->
+<!-- End Stefan: -->
 <!---=================================================================================================================================================================-->
 
 </launch>
