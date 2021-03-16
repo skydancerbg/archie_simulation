@@ -26,6 +26,9 @@
 
   <!-- SENSORS --> 
   <!-- <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/sick_S300.xacro" /> -->
+  
+  <!-- rplidar_a2 gazebo reference --> 
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/rplidar_a2.gazebo.xacro" />
 
   <!-- Microscan - Comment/Uncomment if required -->
   <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/micro_scan.xacro" /> 
@@ -118,13 +121,13 @@
 <!-- ####################### -->
 
   <!-- Sensors -->
-  <xacro:fixed_joint name="rplidar_a2_laser_beam_joint" parent_name="electronics_box" child_name="rplidar_a2_laser_beam_link" color="Red">
+  <!-- <xacro:fixed_joint name="rplidar_a2_laser_beam_joint" parent_name="electronics_box" child_name="rplidar_a2_laser_beam_link" color="Red">
     <origin xyz="${rplidar_a2_laser_beam_joint_x_offset} ${rplidar_a2_laser_beam_joint_y_offset} ${electronics_box_height}" rpy="0 0 ${ROTATE_180_DEGREES}" />
   </xacro:fixed_joint>
 
-  <xacro:box_link name="rplidar_a2_laser_beam_link" lenght="${0.041}" width="${0.041}" height="${0.001}" mass="${0.005}" color="Red">
+  <xacro:box_link name="rplidar_a2_laser_beam_link" lenght="${0.041}" width="${0.041}" height="${0.001}" mass="${0.005}" color="Blue">
     <origin xyz="0 0 0" rpy="0 0 0" />
-  </xacro:box_link>
+  </xacro:box_link> -->
 
   <!-- <xacro:fixed_joint name="rplidar_a2_laser_beam_fom_base_link_joint" parent_name="base_link" child_name="rplidar_a2_laser_beam_fom_base_link_link" color="Red">
     <origin xyz="${rplidar_a2_laser_beam_joint_x_offset} ${rplidar_a2_laser_beam_joint_y_offset} ${230.7*SCALE_mm_to_m}" rpy="0 0 ${ROTATE_180_DEGREES}" />
@@ -134,16 +137,47 @@
     <origin xyz="0 0 0" rpy="0 0 0" />
   </xacro:box_link> -->
 
+<joint name="rplidar_joint" type="fixed"> <!-- Seting the joint at the laser beam plane -->
+    <axis xyz="0 1 0" />
+    <!-- <origin xyz="0.02 0 0.058" rpy="0 0 3.14"/> -->
+    <origin xyz="${rplidar_a2_laser_beam_joint_x_offset} ${rplidar_a2_laser_beam_joint_y_offset} ${electronics_box_height+0.0308}" rpy="0 0 ${ROTATE_180_DEGREES}" />
+    <parent link="electronics_box"/>
+    <child link="laser"/>
+  </joint>
 
+  <!-- rplidar Laser -->
+  <link name="laser">
+    <collision> 
+      <origin xyz="0 0 -0.0308" rpy="1.5707 0 4.71"/> <!-- Move the mesh down on Z axis, as the joint is at the laser beam plane -->
+      <geometry> 
+        <mesh filename="package://archie_simulation/robots/archie_mw/meshes/rplidar.dae" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
 
+    <visual>
+      <origin xyz="0 0 -0.0308" rpy="1.5707 0 4.71"/>
+      <geometry>
+        <mesh filename="package://archie_simulation/robots/archie_mw/meshes/rplidar.dae" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
 
-  <xacro:sick_laser_v0 name="lidar_1" parent="base_link" ros_topic="lidar_1/scan_filtered">
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 -0.0308" rpy="1.5707 0 4.71"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+  </link>
+
+<!-- COMMENT THE FORMER SICK LIDARS -->
+  <!-- <xacro:sick_laser_v0 name="lidar_1" parent="base_link" ros_topic="lidar_1/scan_filtered">
     <origin xyz="0.442 0 0.372" rpy="0 0 0" />
   </xacro:sick_laser_v0>
 
   <xacro:sick_laser_v0 name="lidar_2" parent="base_link" ros_topic="lidar_2/scan_filtered">
     <origin xyz="-0.442 0 0.372" rpy="0 0 3.14" />
-  </xacro:sick_laser_v0>
+  </xacro:sick_laser_v0> -->
+
+
 
   <!--+++++++++++++++++++ IMU ++++++++++++++++++++++++-->
   <!-- Comment or uncomment based on your requirement -->

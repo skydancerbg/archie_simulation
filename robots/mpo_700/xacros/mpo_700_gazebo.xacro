@@ -43,12 +43,15 @@
           </plugin>
         </sensor>
   </gazebo>
+
 <gazebo>
   <plugin name="ros_control" filename="libgazebo_ros_control.so">
     <legacyModeNS>false</legacyModeNS>
     <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
   </plugin>
 </gazebo>
+  
+  
   <gazebo reference="lidar_2_link">
       <sensor type="ray" name="lidar_2_sensor">
           <pose>0 0 0 0 0 0</pose>

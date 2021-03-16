@@ -50,37 +50,37 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <state world_name='default'>
-      <sim_time>14212 746000000</sim_time>
-      <real_time>2072 255583122</real_time>
-      <wall_time>1615881257 317489375</wall_time>
-      <iterations>205690</iterations>
-      <model name='Ar_tags_nr2'>
-        <pose frame=''>-5.54568 -2.89708 0.457124 -1.53577 -0.000557 -1.57299</pose>
+      <sim_time>12155 846000000</sim_time>
+      <real_time>151 139215044</real_time>
+      <wall_time>1592070340 176042788</wall_time>
+      <iterations>15065</iterations>
+      <model name='Ar_tags_2'>
+        <pose frame=''>-5.5463 -2.89682 0.451768 -1.57939 0.005995 -1.6128</pose>
         <scale>1 1 1</scale>
         <link name='link_1'>
-          <pose frame=''>-5.54568 -2.89708 0.457124 -1.53577 -0.000557 -1.57299</pose>
+          <pose frame=''>-5.5463 -2.89682 0.451768 -1.57939 0.005995 -1.6128</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='Construction Cone_clone'>
-        <pose frame=''>-5.09953 -0.976563 0 0 -0 1.3e-05</pose>
+        <pose frame=''>-5.09952 -0.976554 0 0 -0 6e-06</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-5.09953 -0.976563 0 0 -0 1.3e-05</pose>
+          <pose frame=''>-5.09952 -0.976554 0 0 -0 6e-06</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>1.7e-05 3e-05 9.94927 -0.324893 0.397086 -4.9e-05</acceleration>
+          <acceleration>1.7e-05 3e-05 9.94927 -0.32489 0.397088 -4.9e-05</acceleration>
           <wrench>1.7e-05 3e-05 9.94927 0 -0 0</wrench>
         </link>
       </model>
       <model name='Construction Cone_clone_clone'>
-        <pose frame=''>-3.16255 -4.50191 0 0 -0 1.3e-05</pose>
+        <pose frame=''>-3.16254 -4.5019 0 0 -0 6e-06</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-3.16255 -4.50191 0 0 -0 1.3e-05</pose>
+          <pose frame=''>-3.16254 -4.5019 0 0 -0 6e-06</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>1.7e-05 3e-05 9.94927 -0.324893 0.397086 -4.9e-05</acceleration>
+          <acceleration>1.7e-05 3e-05 9.94927 -0.32489 0.397088 -4.9e-05</acceleration>
           <wrench>1.7e-05 3e-05 9.94927 0 -0 0</wrench>
         </link>
       </model>
@@ -104,14 +104,14 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='docking_station'>
-        <pose frame=''>-5.74439 -2.89893 0 0 -0.04527 0</pose>
+      <model name='dockin_station'>
+        <pose frame=''>-5.74439 -2.89893 0 0 -0.045266 0</pose>
         <scale>1 1 1</scale>
         <link name='link_1'>
-          <pose frame=''>-5.74439 -2.89893 0 0 -0.04527 0</pose>
+          <pose frame=''>-5.74439 -2.89893 0 0 -0.045266 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 10.8 0 -0 0</acceleration>
-          <wrench>0 0 10.8 0 -0 0</wrench>
+          <acceleration>-0 0 -1 0 -0 0</acceleration>
+          <wrench>-0 0 -1 0 -0 0</wrench>
         </link>
       </model>
       <model name='door_3d'>
@@ -637,10 +637,10 @@
         </link>
       </model>
       <model name='office_env_w_clone'>
-        <pose frame=''>-5.82312 0.056431 1.25 0 -0 1.57</pose>
+        <pose frame=''>-5.82948 0.079903 1.25 0 -0 1.57</pose>
         <scale>1 1 1</scale>
         <link name='Wall_10'>
-          <pose frame=''>-5.82312 0.056431 1.25 0 -0 1.57</pose>
+          <pose frame=''>-5.82948 0.079903 1.25 0 -0 1.57</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -748,7 +748,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>12.2356 54.6564 57.5684 0 0.765799 -2.25421</pose>
+        <pose frame=''>-1.29545 -2.55987 1.20273 0 0.241796 -2.66221</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
@@ -3873,7 +3873,58 @@
       </link>
       <pose frame=''>15.6163 -0.783534 0 0 -0 0</pose>
     </model>
-    <model name='docking_station'>
+    <model name='Ar_tags_2'>
+      <link name='link_1'>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://Ar_tags_2/meshes/Ar_tag.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://Ar_tags_2/materials/scripts</uri>
+              <uri>model://Ar_tags_2/materials/textures</uri>
+              <name>Ar_tags_2</name>
+            </script>
+          </material>
+          <cast_shadows>1</cast_shadows>
+          <transparency>0</transparency>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>10</max_contacts>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://Ar_tags_2/meshes/Ar_tag.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <allow_auto_disable>1</allow_auto_disable>
+      <pose frame=''>-4.78073 -3.34589 0 0 -0 0</pose>
+    </model>
+    <model name='dockin_station'>
       <link name='link_1'>
         <visual name='visual'>
           <pose frame=''>0 0 0 0 -0 0</pose>
@@ -3925,57 +3976,6 @@
         <kinematic>0</kinematic>
       </link>
       <pose frame=''>-5.74439 -2.89893 0 0 -0 0</pose>
-    </model>
-    <model name='Ar_tags_nr2'>
-      <link name='link_1'>
-        <visual name='visual'>
-          <pose frame=''>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://Ar_tags_nr2/meshes/Ar_tag_nr2.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://Ar_tags_nr2/materials/scripts</uri>
-              <uri>model://Ar_tags_nr2/materials/textures</uri>
-              <name>Ar_tags_nr2</name>
-            </script>
-          </material>
-          <cast_shadows>1</cast_shadows>
-          <transparency>0</transparency>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose frame=''>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://Ar_tags_nr2/meshes/Ar_tag_nr2.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <static>1</static>
-      <allow_auto_disable>1</allow_auto_disable>
-      <pose frame=''>-4.51668 -3.26587 0 0 -0 0</pose>
     </model>
   </world>
 </sdf>
