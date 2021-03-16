@@ -2,13 +2,63 @@
 <robot name="archie_mw" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <!-- TODO Is this gravity and self colide needed????????????????/ -->
-   <gazebo reference="base_link">
+  <gazebo reference="base_link">
     <gravity>true</gravity>
     <self_collide>false</self_collide>
   </gazebo>
 
+<!-- CHASSIS  -->
+  <gazebo reference="base_footprint">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+<!-- ELECTRONICS BOX  -->
+  <gazebo reference="electronics_box">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+<!-- WHEEL SHAFTS  -->
+  <gazebo reference="front_left_wheel_shaft_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+ 
+  <gazebo reference="back_left_wheel_shaft_link">
+    <material>Gazebo/Black</material>
+  </gazebo>  
+
+  <gazebo reference="front_right_wheel_shaft_link">
+    <material>Gazebo/Black</material>
+  </gazebo>  
+
+  <gazebo reference="back_right_wheel_shaft_link">
+    <material>Gazebo/Black</material>
+  </gazebo>  
+
+<!-- WHEELS  --> 
+
+  <gazebo reference="archie_mw_mecanum_wheel_front_left_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="archie_mw_mecanum_wheel_back_left_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="archie_mw_mecanum_wheel_front_right_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="archie_mw_mecanum_wheel_back_right_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
 
   <!-- Lidar sensors -->
+
+<!-- RPlIDAR a2 VISUAL is rplidar_a2.gazebo.xacro --> 
+
+
+<!-- SICK-3000  --> 
   <gazebo reference="lidar_1_link">
       <sensor type="ray" name="lidar_1_sensor">
           <pose>0 0 0 0 0 0</pose>

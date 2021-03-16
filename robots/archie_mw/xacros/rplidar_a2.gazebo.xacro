@@ -110,6 +110,7 @@
         <frameName>laser</frameName>
       </plugin>
     </sensor>
+    <material>Gazebo/Grey</material>
   </gazebo> 
 
   <!-- RpLidar A3 using CPU -->

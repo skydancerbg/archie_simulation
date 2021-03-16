@@ -81,13 +81,22 @@
 
     <!-- SENSORS -->
 
-    <xacro:property name="rplidar_a2_laser_beam_joint_x_offset" value="${0}" />
-    <xacro:property name="rplidar_a2_laser_beam_joint_y_offset" value="${0}" />
-    <xacro:property name="rplidar_a2_laser_beam_joint_z_offset" value="${electronics_box_z_offset+electronics_box_half_height+41*SCALE_mm_to_m}" /> <!--  From the electronics box middle point /> -->
+    <!--  **** RP LIDAR A2 **** -->
+    <!-- ! The Joint is positioned at the laser beam plane, which is offset 30.8 mm from the electronics box top-->
+    <!-- Position the RP Lidar 10 mm from the front edge of the electronics box, to avoid the chance of collision, just in case. -->
+    <!-- RP Lidar's /diameter 75.7 mm/ center point needs to be at x = (337.5 - 10) - (75.7/2) = 289.65 mm from the box center -->
 
-    <xacro:property name="rplidar_a2_mesh_X_offset" value="${*SCALE_mm_to_m}" />
-    <xacro:property name="rplidar_a2_mesh_Y_offset" value="${*SCALE_mm_to_m}" />
-    <xacro:property name="rplidar_a2_mesh_Z_offset" value="${*SCALE_mm_to_m}" />
+    <xacro:property name="rplidar_a2_laser_beam_joint_x_offset" value="${289.65*SCALE_mm_to_m}" />
+    <xacro:property name="rplidar_a2_laser_beam_joint_y_offset" value="${0}" />
+    <!-- The Z offset is positioning the joint at the laser beam plane -->
+    <xacro:property name="rplidar_a2_laser_beam_joint_z_offset" value="${electronics_box_height+0.0308}" />
+    <xacro:property name="rplidar_a2_laser_beam_joint_roll" value="${0}" />
+    <xacro:property name="rplidar_a2_laser_beam_joint_pitch" value="${0}" />
+    <xacro:property name="rplidar_a2_laser_beam_joint_yaw" value="${ROTATE_180_DEGREES}" />
+    
+    <xacro:property name="rplidar_a2_mesh_X_offset" value="${0*SCALE_mm_to_m}" />
+    <xacro:property name="rplidar_a2_mesh_Y_offset" value="${0*SCALE_mm_to_m}" />
+    <xacro:property name="rplidar_a2_mesh_Z_offset" value="${0*SCALE_mm_to_m}" />
 
 
     
