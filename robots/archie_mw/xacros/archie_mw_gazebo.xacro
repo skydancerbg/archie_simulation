@@ -14,8 +14,28 @@
 
 <!-- ELECTRONICS BOX  -->
   <gazebo reference="electronics_box">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+<!-- EXTENSION SIDE BOXES  -->
+  <gazebo reference="left_lower_side_box">
     <material>Gazebo/DarkGrey</material>
   </gazebo>
+
+  <gazebo reference="left_top_side_box">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="right_lower_side_box">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference="right_top_side_box">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+
+
 
 <!-- WHEEL SHAFTS  -->
   <gazebo reference="front_left_wheel_shaft_link">
@@ -130,6 +150,9 @@
           </plugin>
         </sensor>
   </gazebo>
+
+
+
   <!-- Depth Camera -->
   <gazebo reference="camera_link_gazebo">
     <sensor name="camera1" type="depth">
@@ -179,6 +202,7 @@
         <hackBaseline>0</hackBaseline>
       </plugin>
     </sensor>
+    <material>Gazebo/Yellow</material>
   </gazebo>
 
   <!-- USB Camera -->

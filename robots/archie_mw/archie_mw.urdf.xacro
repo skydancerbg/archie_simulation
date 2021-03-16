@@ -86,6 +86,47 @@
     <origin xyz="0 0 0" rpy="0 0 0" />
   </xacro:box_link>
 
+
+  <!-- **** SIDE BOXES (COVERS) ****  -->
+  <!-- Lower part of the side box -->
+  <xacro:fixed_joint name="left_lower_side_box_joint" parent_name="base_link" child_name="left_lower_side_box" color="Grey">
+    <origin xyz="0 ${electronics_box_width/2+34.5*SCALE_mm_to_m} ${(97.05-41.7-14)*SCALE_mm_to_m}" rpy="0 0 0" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="left_lower_side_box" lenght="${480*SCALE_mm_to_m}" width="${69*SCALE_mm_to_m}" height="${110.7*SCALE_mm_to_m}" mass="${2}" color="Yellow">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link>
+
+  <!-- Top part of the side box -->
+  <xacro:fixed_joint name="left_top_side_box_joint" parent_name="base_link" child_name="left_top_side_box" color="Grey">
+    <origin xyz="0 ${electronics_box_width/2+34.5*SCALE_mm_to_m} ${(110.7+40.2)*SCALE_mm_to_m}" rpy="0 0 0" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="left_top_side_box" lenght="${electronics_box_lenght}" width="${69*SCALE_mm_to_m}" height="${80*SCALE_mm_to_m}" mass="${2}" color="Yellow">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link>
+
+  <!-- Lower part of the right side box -->
+  <xacro:fixed_joint name="right_lower_side_box_joint" parent_name="base_link" child_name="right_lower_side_box" color="Grey">
+    <origin xyz="0 ${-(electronics_box_width/2+34.5*SCALE_mm_to_m)} ${(97.05-41.7-14)*SCALE_mm_to_m}" rpy="0 0 0" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="right_lower_side_box" lenght="${480*SCALE_mm_to_m}" width="${69*SCALE_mm_to_m}" height="${110.7*SCALE_mm_to_m}" mass="${2}" color="Yellow">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link>
+
+  <!-- Top part of the right side box -->
+  <xacro:fixed_joint name="right_top_side_box_joint" parent_name="base_link" child_name="right_top_side_box" color="Grey">
+    <origin xyz="0 ${-(electronics_box_width/2+34.5*SCALE_mm_to_m)} ${(110.7+40.2)*SCALE_mm_to_m}" rpy="0 0 0" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="right_top_side_box" lenght="${electronics_box_lenght}" width="${69*SCALE_mm_to_m}" height="${80*SCALE_mm_to_m}" mass="${2}" color="Yellow">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link>
+
+
+
+
 <!-- **** ROBOT TORSO STANDOFF (POLE) height = 406.8 mm ****  -->
 <!-- The heap is located at about 0.53 of the human body lenght -->
 <!-- Robot haight - 1200 mm, Heap height from the ground = 1200 mm * 0.53 = 636 mm -->

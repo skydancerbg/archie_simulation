@@ -35,7 +35,7 @@
 			      <geometry>
 			      	<mesh filename="package://archie_simulation/robots/archie_mw/meshes/realsense_d435.dae"/>
 			      </geometry>
-			      <material name="red">
+			      <material name="Red">
 			      	<color rgba="1 0 0 1" />
 			      </material>
 			    </visual>
