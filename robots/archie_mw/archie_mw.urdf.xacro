@@ -34,8 +34,12 @@
   <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/micro_scan.xacro" /> 
 
   <!--Ultrasonics, cameras and IMU's  -->
+
   <!-- Depth Camera Realsense d435i-->
   <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/depth_camera.xacro" /> 
+
+  <!-- Depth Camera ORBECC Astra (ONLY VISUAL)-->
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/astra_rgbd_macro.xacro" /> 
 
   <!-->
   <xacro:include filename="$(find archie_simulation)/robots/archie_mw/xacros/imu.xacro" />
@@ -142,6 +146,10 @@
   <xacro:box_link name="torso_standoff" lenght="${40*SCALE_mm_to_m}" width="${40*SCALE_mm_to_m}" height="${406.8*SCALE_mm_to_m}" mass="${2.45*0.4068}" color="Grey">
     <origin xyz="0 0 ${406.8*SCALE_mm_to_m/2}" rpy="0 0 0" />
   </xacro:box_link>
+
+<!-- ORBBEC ASTRA RGBD CAMERA (ONLY VISUAL) -->
+  <xacro:astra_depth_camera name="astra_camera" >
+  </xacro:astra_depth_camera>  
 
 <!-- WHEEL SHAFTS -->
 
