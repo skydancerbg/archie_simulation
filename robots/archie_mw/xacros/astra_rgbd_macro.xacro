@@ -28,6 +28,8 @@
       <origin xyz="-0.01 0 -0.03" rpy="1.5707 0 1.5707"/>
       <geometry>
         <mesh filename="package://archie_simulation/robots/archie_mw/meshes/astra.dae" scale="0.001 0.001 0.001" />
+		<!-- <mesh filename="package://archie_simulation/robots/archie_mw/meshes/realsense_d435.dae"/> -->
+		<!-- <mesh filename="package://archie_simulation/robots/archie_mw/meshes/IntelRealsense_D435_Multibody.stl" scale="0.001 0.001 0.001"/> -->
       </geometry>
     </visual>
 
@@ -38,7 +40,7 @@
     </inertial>
   </link>
 
-  <joint name="astra_camera_optical_joint" type="fixed">
+  <!-- <joint name="astra_camera_optical_joint" type="fixed">
     <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
     <parent link="astra_camera_link"/>
     <child link="astra_camera_rgb_frame"/>
@@ -53,8 +55,8 @@
     <child link="astra_camera_depth_frame"/>
   </joint>
 
-  <link name="astra_acamera_depth_frame">
-  </link>
+  <link name="astra_camera_depth_frame">
+  </link> -->
 
     </xacro:macro>
 </robot>

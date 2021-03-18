@@ -138,14 +138,14 @@
 <!-- standoff_height = 636 - 40.2 - 89 - 100 = 406.8 -->
 <!-- aluminium profile 40x40 will be used weight of the profile is: 2.45 kg/meter -->
 <!-- ! The Joint is positioned on top plane of the electronics box module -->
-  <xacro:fixed_joint name="torso_standoff" parent_name="electronics_box" child_name="torso_standoff" color="Grey">
+  <!-- <xacro:fixed_joint name="torso_standoff" parent_name="electronics_box" child_name="torso_standoff" color="Grey">
     <origin xyz="0 0 ${100*SCALE_mm_to_m}" rpy="0 0 0" />
-  </xacro:fixed_joint>
+  </xacro:fixed_joint> -->
 
 <!-- ! Mass of the aluminium profile is 2.45kg per meter -->
-  <xacro:box_link name="torso_standoff" lenght="${40*SCALE_mm_to_m}" width="${40*SCALE_mm_to_m}" height="${406.8*SCALE_mm_to_m}" mass="${2.45*0.4068}" color="Grey">
+  <!-- <xacro:box_link name="torso_standoff" lenght="${40*SCALE_mm_to_m}" width="${40*SCALE_mm_to_m}" height="${406.8*SCALE_mm_to_m}" mass="${2.45*0.4068}" color="Grey">
     <origin xyz="0 0 ${406.8*SCALE_mm_to_m/2}" rpy="0 0 0" />
-  </xacro:box_link>
+  </xacro:box_link> -->
 
 <!-- ORBBEC ASTRA RGBD CAMERA (ONLY VISUAL) -->
   <xacro:astra_depth_camera name="astra_camera" >
