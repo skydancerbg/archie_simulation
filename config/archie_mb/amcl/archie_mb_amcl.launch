@@ -16,7 +16,7 @@
 
   <node pkg="amcl" type="amcl" name="amcl">
   	<remap from="scan" to="lidar_1/scan_filtered"/>
-  	<rosparam file="$(find archie_simulation)/config/arche_mb/amcl/amcl_config.yaml" command="load" />
+  	<rosparam file="$(find archie_simulation)/config/archie_mb/amcl/amcl_config.yaml" command="load" />
   </node>
 
 </launch>

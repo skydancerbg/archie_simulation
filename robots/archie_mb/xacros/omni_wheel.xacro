@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="arche_mb">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="archie_mb">
 
   <xacro:macro name="omni_wheel_250" params="name parent *origin">
    <joint name="${name}_joint" type="revolute">
@@ -24,14 +24,14 @@
     <visual>
      <origin xyz="0 0 0" rpy="0 0 0"/>
      <geometry>
-        <mesh filename="package://archie_simulation/robots/arche_mb/meshes/MPO-500-WHEEL.dae" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://archie_simulation/robots/archie_mb/meshes/MPO-500-WHEEL.dae" scale="0.001 0.001 0.001"/>
      </geometry>
     </visual>
 
     <collision>
      <origin xyz="0 0 0" rpy="0 1.57 1.57" />
      <geometry>
-        <!-- <mesh filename="package://archie_simulation/robots/arche_mb/meshes/MPO-500-WHEEL.dae" scale="0.001 0.001 0.001"/> -->
+        <!-- <mesh filename="package://archie_simulation/robots/archie_mb/meshes/MPO-500-WHEEL.dae" scale="0.001 0.001 0.001"/> -->
        <!-- <cylinder radius="0.126" length="0.110"/> -->
       <sphere radius="0.117" />
      </geometry>

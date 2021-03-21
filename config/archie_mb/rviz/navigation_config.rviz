@@ -65,22 +65,22 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        arche_mb_mecanum_wheel_back_left_link:
+        archie_mb_mecanum_wheel_back_left_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        arche_mb_mecanum_wheel_back_right_link:
+        archie_mb_mecanum_wheel_back_right_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        arche_mb_mecanum_wheel_front_left_link:
+        archie_mb_mecanum_wheel_front_left_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        arche_mb_mecanum_wheel_front_right_link:
+        archie_mb_mecanum_wheel_front_right_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -228,13 +228,13 @@ Visualization Manager:
         All Enabled: false
         ar_marker_2:
           Value: true
-        arche_mb_mecanum_wheel_back_left_link:
+        archie_mb_mecanum_wheel_back_left_link:
           Value: false
-        arche_mb_mecanum_wheel_back_right_link:
+        archie_mb_mecanum_wheel_back_right_link:
           Value: false
-        arche_mb_mecanum_wheel_front_left_link:
+        archie_mb_mecanum_wheel_front_left_link:
           Value: false
-        arche_mb_mecanum_wheel_front_right_link:
+        archie_mb_mecanum_wheel_front_right_link:
           Value: false
         astra_camera_link:
           Value: true
@@ -284,13 +284,13 @@ Visualization Manager:
           odom:
             base_link:
               base_footprint:
-                arche_mb_mecanum_wheel_back_left_link:
+                archie_mb_mecanum_wheel_back_left_link:
                   {}
-                arche_mb_mecanum_wheel_back_right_link:
+                archie_mb_mecanum_wheel_back_right_link:
                   {}
-                arche_mb_mecanum_wheel_front_left_link:
+                archie_mb_mecanum_wheel_front_left_link:
                   {}
-                arche_mb_mecanum_wheel_front_right_link:
+                archie_mb_mecanum_wheel_front_right_link:
                   {}
                 back_left_wheel_shaft_link:
                   {}

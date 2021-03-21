@@ -10,7 +10,7 @@
 
 <!---=================================================================================================================================================================-->
 
-	<arg name="rvizconfig" default="$(find archie_simulation)/config/arche_mb/rviz/$(arg config)_config.rviz" />
+	<arg name="rvizconfig" default="$(find archie_simulation)/config/archie_mb/rviz/$(arg config)_config.rviz" />
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true"/>
 
 <!---=================================================================================================================================================================-->

@@ -1,51 +1,51 @@
 <?xml version="1.0" ?>
-<robot name="arche_mb" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="archie_mb" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- PROPERTIES -->
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/properties.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/properties.xacro" />
   
   <!-- MATERIALS -->
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/materials.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/materials.xacro" />
   
   <!-- INERTIAL CALCULATIONS -->
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/inertial_calc_macros.xacro" />  
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/inertial_calc_macros.xacro" />  
 
   <!--GAZEBO REFERENCES -->
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/arche_mb_gazebo.xacro" />
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/arche_mb_colors_gazebo.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/archie_mb_gazebo.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/archie_mb_colors_gazebo.xacro" />
 
   <!-- BODY -->
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/arche_mb_body.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/archie_mb_body.xacro" />
  
   <!-- WHEELS -->
-  <!-- <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/omni_wheel.xacro" /> -->
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/mecanum_wheel.xacro" />
+  <!-- <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/omni_wheel.xacro" /> -->
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/mecanum_wheel.xacro" />
 
   <!--DOCKING ADAPTER  -->
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/docking_adapter.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/docking_adapter.xacro" />
 
   <!-- SENSORS --> 
-  <!-- <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/sick_S300.xacro" /> -->
+  <!-- <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/sick_S300.xacro" /> -->
   
   <!-- rplidar_a2 gazebo reference --> 
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/rplidar_a2.gazebo.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/rplidar_a2.gazebo.xacro" />
 
   <!-- Microscan - Comment/Uncomment if required -->
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/micro_scan.xacro" /> 
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/micro_scan.xacro" /> 
 
   <!--Ultrasonics, cameras and IMU's  -->
 
   <!-- Depth Camera Realsense d435i-->
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/depth_camera.xacro" /> 
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/depth_camera.xacro" /> 
 
   <!-- Depth Camera ORBECC Astra (ONLY VISUAL)-->
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/astra_rgbd_macro.xacro" /> 
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/astra_rgbd_macro.xacro" /> 
 
   <!-->
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/imu.xacro" />
-  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/ultrasonic.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/imu.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/ultrasonic.xacro" />
   <-->
-  <!-- <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/camera.xacro" />  -->
+  <!-- <xacro:include filename="$(find archie_simulation)/robots/archie_mb/xacros/camera.xacro" />  -->
   
 <!-- ################################################################################## -->
     <!-- BASE-FOOTPRINT -->
@@ -69,11 +69,11 @@
 
     <!-- color="Yellow" z_offset="${chassis_center_to_base_footprint_z_offset}"> -->
   <!-- Base link macro -->
-  <xacro:arche_mb_base name="base_footprint" parent="base_link" lenght="${chassis_lenght}" 
+  <xacro:archie_mb_base name="base_footprint" parent="base_link" lenght="${chassis_lenght}" 
     width="${chassis_width}" height="${chassis_height}" mass="${chassis_weight}" 
     color="Yellow" z_offset="${chassis_bottom_z_offset}">
     <joint_origin xyz="0 0 0" rpy="0 0 0" />
-  </xacro:arche_mb_base>
+  </xacro:archie_mb_base>
   
 
 <!-- **** ELECTRONICS BOX (MODULE) - height 100 mm ****  -->
@@ -198,26 +198,26 @@
 
   <!-- Invoke Wheel Macros -->
 
-  <xacro:mecanum_wheel_152 name="arche_mb_mecanum_wheel_front_left" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
-      mesh_file_name="package://archie_simulation/robots/arche_mb/meshes/mecanum_wheel_left.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
+  <xacro:mecanum_wheel_152 name="archie_mb_mecanum_wheel_front_left" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
+      mesh_file_name="package://archie_simulation/robots/archie_mb/meshes/mecanum_wheel_left.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
       mesh_scale_y="${0.92*SCALE_mm_to_m}" mesh_scale_z="${1.52*SCALE_mm_to_m}">
     <origin xyz="${left_front_wheel_x_offset} ${left_front_wheel_y_offset+shaft_lenght} ${left_front_wheel_z_offset}" rpy="0 0 0" />
   </xacro:mecanum_wheel_152>
 
-  <xacro:mecanum_wheel_152 name="arche_mb_mecanum_wheel_front_right" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
-      mesh_file_name="package://archie_simulation/robots/arche_mb/meshes/mecanum_wheel_right.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
+  <xacro:mecanum_wheel_152 name="archie_mb_mecanum_wheel_front_right" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
+      mesh_file_name="package://archie_simulation/robots/archie_mb/meshes/mecanum_wheel_right.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
       mesh_scale_y="${0.92*SCALE_mm_to_m}" mesh_scale_z="${1.52*SCALE_mm_to_m}">
     <origin xyz="${left_front_wheel_x_offset} ${-(left_front_wheel_y_offset+shaft_lenght)} ${left_front_wheel_z_offset}" rpy="0 0 0" />
   </xacro:mecanum_wheel_152>
 
-  <xacro:mecanum_wheel_152 name="arche_mb_mecanum_wheel_back_left" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
-      mesh_file_name="package://archie_simulation/robots/arche_mb/meshes/mecanum_wheel_left.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
+  <xacro:mecanum_wheel_152 name="archie_mb_mecanum_wheel_back_left" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
+      mesh_file_name="package://archie_simulation/robots/archie_mb/meshes/mecanum_wheel_left.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
       mesh_scale_y="${0.92*SCALE_mm_to_m}" mesh_scale_z="${1.52*SCALE_mm_to_m}">
     <origin xyz="${-left_front_wheel_x_offset} ${left_front_wheel_y_offset+shaft_lenght} ${left_front_wheel_z_offset}" rpy="0 0 0" />
   </xacro:mecanum_wheel_152>
 
-  <xacro:mecanum_wheel_152 name="arche_mb_mecanum_wheel_back_right" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
-      mesh_file_name="package://archie_simulation/robots/arche_mb/meshes/mecanum_wheel_right.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
+  <xacro:mecanum_wheel_152 name="archie_mb_mecanum_wheel_back_right" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
+      mesh_file_name="package://archie_simulation/robots/archie_mb/meshes/mecanum_wheel_right.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
       mesh_scale_y="${0.92*SCALE_mm_to_m}" mesh_scale_z="${1.52*SCALE_mm_to_m}">
     <origin xyz="${-left_front_wheel_x_offset} ${-(left_front_wheel_y_offset+shaft_lenght)} ${left_front_wheel_z_offset}" rpy="0 0 0" />
   </xacro:mecanum_wheel_152>
@@ -262,14 +262,14 @@
     <collision> 
       <origin xyz="0 0 -0.0308" rpy="1.5707 0 4.71"/> <!-- Move the mesh down on Z axis, as the joint is at the laser beam plane -->
       <geometry> 
-        <mesh filename="package://archie_simulation/robots/arche_mb/meshes/rplidar.dae" scale="0.001 0.001 0.001" />
+        <mesh filename="package://archie_simulation/robots/archie_mb/meshes/rplidar.dae" scale="0.001 0.001 0.001" />
       </geometry>
     </collision>
 
     <visual>
       <origin xyz="0 0 -0.0308" rpy="1.5707 0 4.71"/>
       <geometry>
-        <mesh filename="package://archie_simulation/robots/arche_mb/meshes/rplidar.dae" scale="0.001 0.001 0.001" />
+        <mesh filename="package://archie_simulation/robots/archie_mb/meshes/rplidar.dae" scale="0.001 0.001 0.001" />
       </geometry>
     </visual>
 
@@ -382,39 +382,39 @@
 
   <!-- TRANSMISSIONS -->
 
-  <transmission name="arche_mb_mecanum_wheel_front_left">
+  <transmission name="archie_mb_mecanum_wheel_front_left">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="arche_mb_mecanum_wheel_front_left_joint">
+    <joint name="archie_mb_mecanum_wheel_front_left_joint">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="arche_mb_mecanum_wheel_front_left_motor">
+    <actuator name="archie_mb_mecanum_wheel_front_left_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="arche_mb_mecanum_wheel_front_right">
+  <transmission name="archie_mb_mecanum_wheel_front_right">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="arche_mb_mecanum_wheel_front_right_joint">
+    <joint name="archie_mb_mecanum_wheel_front_right_joint">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="arche_mb_mecanum_wheel_front_right_motor">
+    <actuator name="archie_mb_mecanum_wheel_front_right_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="arche_mb_mecanum_wheel_back_left">
+  <transmission name="archie_mb_mecanum_wheel_back_left">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="arche_mb_mecanum_wheel_back_left_joint">
+    <joint name="archie_mb_mecanum_wheel_back_left_joint">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="arche_mb_mecanum_wheel_back_left_motor">
+    <actuator name="archie_mb_mecanum_wheel_back_left_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="arche_mb_mecanum_wheel_back_right">
+  <transmission name="archie_mb_mecanum_wheel_back_right">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="arche_mb_mecanum_wheel_back_right_joint">
+    <joint name="archie_mb_mecanum_wheel_back_right_joint">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="arche_mb_mecanum_wheel_back_right_motor">
+    <actuator name="archie_mb_mecanum_wheel_back_right_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>

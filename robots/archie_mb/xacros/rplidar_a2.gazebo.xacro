@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="arche_mb" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="archie_mb" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- If you cant't use your GPU comment RpLidar using GPU and uncomment RpLidar using CPU 
     gazebo plugin. -->

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="properties">
 
-<!-- Properties file for arche_mb robot -->
+<!-- Properties file for archie_mb robot -->
 <!-- Created by Stefan -->
 <!-- IICT-BAS BG - Version 1.0 from Feb. 15-th, 2021. -->
 

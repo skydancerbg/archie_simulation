@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="arche_mb">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="archie_mb">
 
-  <xacro:macro name="arche_mb_base" params="name parent *joint_origin lenght width height mass color z_offset">
+  <xacro:macro name="archie_mb_base" params="name parent *joint_origin lenght width height mass color z_offset">
    
     <joint name="${name}_joint" type="fixed">
       <xacro:insert_block name="joint_origin" />
@@ -19,7 +19,7 @@
         <origin xyz="0 0 ${z_offset}" rpy="0 0 0" />
           <geometry>
             <box size="${lenght} ${width} ${height}"/>
-            <!-- <mesh filename="package://archie_simulation/robots/arche_mb/meshes/arche_mb_full_body.STL" scale="0.01 0.01 0.01"/> -->
+            <!-- <mesh filename="package://archie_simulation/robots/archie_mb/meshes/archie_mb_full_body.STL" scale="0.01 0.01 0.01"/> -->
           </geometry>
         <material name="${color}" />
       </visual>
@@ -29,7 +29,7 @@
         <origin xyz="0 0 ${z_offset}" rpy="0 0 0" />
         <geometry>
             <box size="${lenght} ${width} ${height}"/>
-           <!-- <mesh filename="package://archie_simulation/robots/arche_mb/meshes/MPO-500-BODY.dae" scale="0.001 0.001 0.001"/> -->
+           <!-- <mesh filename="package://archie_simulation/robots/archie_mb/meshes/MPO-500-BODY.dae" scale="0.001 0.001 0.001"/> -->
         </geometry>
       </collision>
          
@@ -67,7 +67,7 @@
         the distance from the ground allready defined in the joint. -->
           <origin xyz="0 0 ${height/2}" rpy="0 0 0" />
           <geometry>
-            <!-- <mesh filename="package://archie_simulation/robots/arche_mb/meshes/archie_electronics_link.STL" scale="0.001 0.001 0.001"/> -->
+            <!-- <mesh filename="package://archie_simulation/robots/archie_mb/meshes/archie_electronics_link.STL" scale="0.001 0.001 0.001"/> -->
             <box size="${lenght} ${width} ${height}"/>
           </geometry>
           <!-- <material name="light_grey" /> -->

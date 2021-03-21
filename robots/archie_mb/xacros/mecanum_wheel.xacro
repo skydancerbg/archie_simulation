@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="arche_mb">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="archie_mb">
 
   <xacro:macro name="shaft_joint" params="name *origin">
   <joint name="${name}_wheel_shaft_joint" type="fixed">
@@ -65,7 +65,7 @@
 
      <geometry>
         <!-- <mesh filename="package://archie_simulation/robots/mpo_500/meshes/MPO-500-WHEEL.dae" scale="0.001 0.001 0.001"/> -->
-        <!-- <mesh filename="package://archie_simulation/robots/arche_mb/meshes/mecanum_wheel_left.STL" scale="0.001 0.001 0.001"/> -->
+        <!-- <mesh filename="package://archie_simulation/robots/archie_mb/meshes/mecanum_wheel_left.STL" scale="0.001 0.001 0.001"/> -->
         <mesh filename="${mesh_file_name}" scale="${mesh_scale_x} ${mesh_scale_y} ${mesh_scale_z}"/>
       <!-- <cylinder radius="0.076" length="0.046"/> -->
       <!-- <cylinder radius="${diameter/2}" length="${width}"/> -->

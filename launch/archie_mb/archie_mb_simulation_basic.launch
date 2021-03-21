@@ -32,10 +32,10 @@
 <!---=================================================================================================================================================================-->
 
   <!--Robot description to param server-->
-  <param name="robot_description" command="$(find xacro)/xacro '$(find archie_simulation)/robots/arche_mb/arche_mb.urdf.xacro'"/>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find archie_simulation)/robots/archie_mb/archie_mb.urdf.xacro'"/>
 
-  <node name="arche_mb_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
-  args="-urdf -param robot_description -model arche_mb" />
+  <node name="archie_mb_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+  args="-urdf -param robot_description -model archie_mb" />
   
   <!--To publish Joint and Robot state-->
 
@@ -47,9 +47,9 @@
 
 <!-- Launching wheel controllers -->
 
-  <rosparam file="$(find archie_simulation)/config/controller/arche_mb_wheel_controller.yaml" command="load"/>
+  <rosparam file="$(find archie_simulation)/config/controller/archie_mb_wheel_controller.yaml" command="load"/>
   <node name="wheel_controller_spawner" pkg="controller_manager" type="controller_manager" 
-  args="spawn arche_mb_mecanum_wheel_front_left_controller arche_mb_mecanum_wheel_front_right_controller arche_mb_mecanum_wheel_back_left_controller arche_mb_mecanum_wheel_back_right_controller" respawn="false" output="screen"/>
+  args="spawn archie_mb_mecanum_wheel_front_left_controller archie_mb_mecanum_wheel_front_right_controller archie_mb_mecanum_wheel_back_left_controller archie_mb_mecanum_wheel_back_right_controller" respawn="false" output="screen"/>
 
 <!-- Launching kinematics node -->
 

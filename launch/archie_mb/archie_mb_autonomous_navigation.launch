@@ -6,7 +6,7 @@
 
   <!--To launch amcl-->
   <!--NOTE: Do not forget to configure the correct Map for AMCL-->
-  <!--NOTE: Use file archie_simulation/config/arche_mb/amcl/arche_mb_amcl.launch-->
+  <!--NOTE: Use file archie_simulation/config/archie_mb/amcl/archie_mb_amcl.launch-->
   <arg name="amcl" value="true"/>
 
   <!--To launch move base-->
@@ -19,19 +19,19 @@
  <!--if arg gmapping is set to true (default=false)-->
 
  <group if="$(arg gmapping)">
- 	<include file="$(find archie_simulation)/config/arche_mb/gmapping/arche_mb_gmapping.launch"/>
+ 	<include file="$(find archie_simulation)/config/archie_mb/gmapping/archie_mb_gmapping.launch"/>
  </group>
 
  <!--if arg amcl is set to true (default=false)-->
 
  <group if="$(arg amcl)">
- 	<include file="$(find archie_simulation)/config/arche_mb/amcl/arche_mb_amcl.launch"/>
+ 	<include file="$(find archie_simulation)/config/archie_mb/amcl/archie_mb_amcl.launch"/>
  </group>
 
  <!--if arg move_base is set to true-->
 
  <group if="$(arg move_base)">
- 	<include file="$(find archie_simulation)/config/arche_mb/move_base/arche_mb_move_base.launch"/>
+ 	<include file="$(find archie_simulation)/config/archie_mb/move_base/archie_mb_move_base.launch"/>
  </group> 
 
 
