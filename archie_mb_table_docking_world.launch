@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+<!-- these are the arguments you can pass this launch file, for
+example paused:=true -->
+
+	<arg name="paused" default="false"/>
+	<arg name="use_sim_time" default="true"/>
+	<arg name="gui" default="true"/>
+	<arg name="headless" default="false"/>
+	<arg name="debug" default="false"/>
+
+<!-- We resume the logic in empty_world.launch -->
+
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+	<arg name="debug" value="$(arg debug)" />
+	<arg name="gui" value="$(arg gui)" />
+	<arg name="paused" value="$(arg paused)"/>
+	<arg name="use_sim_time" value="$(arg use_sim_time)"/>
+	<arg name="headless" value="$(arg headless)"/>
+	<arg name="world_name" value="$(find aitech_task)/world/table_docking.world"/>
+</include>
+
+
+  <!--Robot description to param server-->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find archie_simulation)/robots/arche_mb/arche_mb.urdf.xacro'"/>
+
+  <node name="arche_mb_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+  args="-urdf -param robot_description -model arche_mb" />
+  
+  <!--To publish Joint and Robot state-->
+
+  <include file="$(find archie_simulation)/config/controller/launch/controller_utils.launch"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+      <param name="rate" value="100.0"/>
+  </node>
+
+<!-- Launching wheel controllers -->
+
+  <rosparam file="$(find archie_simulation)/config/controller/arche_mb_wheel_controller.yaml" command="load"/>
+  <node name="wheel_controller_spawner" pkg="controller_manager" type="controller_manager" 
+  args="spawn arche_mb_mecanum_wheel_front_left_controller arche_mb_mecanum_wheel_front_right_controller arche_mb_mecanum_wheel_back_left_controller arche_mb_mecanum_wheel_back_right_controller" respawn="false" output="screen"/>
+
+<!-- Launching kinematics node -->
+
+  <!-- upload parameters -->
+        <rosparam command="load" ns="kinematics_mecanum" file="$(find neo_kinematics_mecanum)/launch/test_setup.yaml"/>
+  
+  <!-- start simulation node -->
+        <node pkg="archie_kinematics_mecanum" type="archie_kinematics_mecanum_sim_node" ns="kinematics_mecanum" name="archie_kinematics_mecanum_sim_node" respawn="false" output="screen"/>
+
+
+
+</launch>

@@ -1,0 +1,420 @@
+<?xml version="1.0" ?>
+<robot name="arche_mb" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- PROPERTIES -->
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/properties.xacro" />
+  
+  <!-- MATERIALS -->
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/materials.xacro" />
+  
+  <!-- INERTIAL CALCULATIONS -->
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/inertial_calc_macros.xacro" />  
+
+  <!--GAZEBO REFERENCES -->
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/arche_mb_gazebo.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/arche_mb_colors_gazebo.xacro" />
+
+  <!-- BODY -->
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/arche_mb_body.xacro" />
+ 
+  <!-- WHEELS -->
+  <!-- <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/omni_wheel.xacro" /> -->
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/mecanum_wheel.xacro" />
+
+  <!--DOCKING ADAPTER  -->
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/docking_adapter.xacro" />
+
+  <!-- SENSORS --> 
+  <!-- <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/sick_S300.xacro" /> -->
+  
+  <!-- rplidar_a2 gazebo reference --> 
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/rplidar_a2.gazebo.xacro" />
+
+  <!-- Microscan - Comment/Uncomment if required -->
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/micro_scan.xacro" /> 
+
+  <!--Ultrasonics, cameras and IMU's  -->
+
+  <!-- Depth Camera Realsense d435i-->
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/depth_camera.xacro" /> 
+
+  <!-- Depth Camera ORBECC Astra (ONLY VISUAL)-->
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/astra_rgbd_macro.xacro" /> 
+
+  <!-->
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/imu.xacro" />
+  <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/ultrasonic.xacro" />
+  <-->
+  <!-- <xacro:include filename="$(find archie_simulation)/robots/arche_mb/xacros/camera.xacro" />  -->
+  
+<!-- ################################################################################## -->
+    <!-- BASE-FOOTPRINT -->
+  <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin -->
+<!-- TODO Here base_link is used insted of base_footprint CHANGE THE TWO!!!  -->
+  <!-- <link name="base_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.01 0.01 0.01" />
+        </geometry>
+    <material name="Red"/>
+    </visual>
+  </link>
+
+  <gazebo reference="base_link">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo> -->
+  <link name="base_link" />
+
+  <!-- Base link macro -->
+  <xacro:arche_mb_base name="base_footprint" parent="base_link" lenght="${chassis_lenght}" 
+    width="${chassis_width}" height="${chassis_height}" mass="${chassis_weight}" 
+    color="Yellow" z_offset="${chassis_center_to_base_footprint_z_offset}">
+    <joint_origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:arche_mb_base>
+  
+
+<!-- **** ELECTRONICS BOX (MODULE) - height 100 mm ****  -->
+<!-- /batteries height is 76 mm whenlaying on the side. -->
+<!-- can accomadete, not only Raspberry PI 4 with passive cooling case,  -->
+<!-- but also  Intel NUC in the big case 51 mm height/ -->
+
+<!-- ! The Joint is positioned on top plane of the chassis (base_link) module -->
+  <!-- <xacro:fixed_joint name="electronics_box" parent_name="base_footprint" child_name="electronics_box" color="Grey">
+    <origin xyz="0 0 ${electronics_box_z_offset}" rpy="0 0 0" /> -->
+  <xacro:fixed_joint name="electronics_box" parent_name="base_link" child_name="electronics_box" color="Grey">
+    <origin xyz="0 0 ${130.7*SCALE_mm_to_m}" rpy="0 0 0" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="electronics_box" lenght="${electronics_box_lenght}" width="${electronics_box_width}" height="${electronics_box_height}" mass="${electronics_box_weight}" color="Light_grey">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link>
+
+
+  <!-- **** SIDE BOXES (COVERS) ****  -->
+  <!-- Lower part of the side box -->
+  <xacro:fixed_joint name="left_lower_side_box_joint" parent_name="base_link" child_name="left_lower_side_box" color="Grey">
+    <origin xyz="0 ${electronics_box_width/2+34.5*SCALE_mm_to_m} ${(97.05-41.7-14)*SCALE_mm_to_m}" rpy="0 0 0" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="left_lower_side_box" lenght="${480*SCALE_mm_to_m}" width="${69*SCALE_mm_to_m}" height="${110.7*SCALE_mm_to_m}" mass="${2}" color="Yellow">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link>
+
+  <!-- Top part of the side box -->
+  <xacro:fixed_joint name="left_top_side_box_joint" parent_name="base_link" child_name="left_top_side_box" color="Grey">
+    <origin xyz="0 ${electronics_box_width/2+34.5*SCALE_mm_to_m} ${(110.7+40.2)*SCALE_mm_to_m}" rpy="0 0 0" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="left_top_side_box" lenght="${electronics_box_lenght}" width="${69*SCALE_mm_to_m}" height="${80*SCALE_mm_to_m}" mass="${2}" color="Yellow">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link>
+
+  <!-- Lower part of the right side box -->
+  <xacro:fixed_joint name="right_lower_side_box_joint" parent_name="base_link" child_name="right_lower_side_box" color="Grey">
+    <origin xyz="0 ${-(electronics_box_width/2+34.5*SCALE_mm_to_m)} ${(97.05-41.7-14)*SCALE_mm_to_m}" rpy="0 0 0" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="right_lower_side_box" lenght="${480*SCALE_mm_to_m}" width="${69*SCALE_mm_to_m}" height="${110.7*SCALE_mm_to_m}" mass="${2}" color="Yellow">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link>
+
+  <!-- Top part of the right side box -->
+  <xacro:fixed_joint name="right_top_side_box_joint" parent_name="base_link" child_name="right_top_side_box" color="Grey">
+    <origin xyz="0 ${-(electronics_box_width/2+34.5*SCALE_mm_to_m)} ${(110.7+40.2)*SCALE_mm_to_m}" rpy="0 0 0" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="right_top_side_box" lenght="${electronics_box_lenght}" width="${69*SCALE_mm_to_m}" height="${80*SCALE_mm_to_m}" mass="${2}" color="Yellow">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link>
+
+
+
+
+<!-- **** ROBOT TORSO STANDOFF (POLE) height = 406.8 mm ****  -->
+<!-- The heap is located at about 0.53 of the human body lenght -->
+<!-- Robot haight - 1200 mm, Heap height from the ground = 1200 mm * 0.53 = 636 mm -->
+<!-- Torso standoff height is 636 mm - base_plate_botom_from_base_frame_Z_offset - chassis_height - electronics_box_height  -->
+<!-- standoff_height = 636 - 40.2 - 89 - 100 = 406.8 -->
+<!-- aluminium profile 40x40 will be used weight of the profile is: 2.45 kg/meter -->
+<!-- ! The Joint is positioned on top plane of the electronics box module -->
+  <!-- <xacro:fixed_joint name="torso_standoff" parent_name="electronics_box" child_name="torso_standoff" color="Grey">
+    <origin xyz="0 0 ${100*SCALE_mm_to_m}" rpy="0 0 0" />
+  </xacro:fixed_joint> -->
+
+<!-- ! Mass of the aluminium profile is 2.45kg per meter -->
+  <!-- <xacro:box_link name="torso_standoff" lenght="${40*SCALE_mm_to_m}" width="${40*SCALE_mm_to_m}" height="${406.8*SCALE_mm_to_m}" mass="${2.45*0.4068}" color="Grey">
+    <origin xyz="0 0 ${406.8*SCALE_mm_to_m/2}" rpy="0 0 0" />
+  </xacro:box_link> -->
+
+<!-- ORBBEC ASTRA RGBD CAMERA (ONLY VISUAL) -->
+  <xacro:astra_depth_camera name="astra_camera" >
+  </xacro:astra_depth_camera>  
+
+<!-- WHEEL SHAFTS -->
+
+<!-- Invoke shaft_joint macros for the front left shaft -->
+    <xacro:shaft_joint name="front_left">
+      <origin xyz="${shaft_x_offset} ${shaft_y_offset} ${shaft_z_offset}" rpy="0 0 0" />
+    </xacro:shaft_joint>
+
+<!-- Invoke shaft_link macros for the front left shaft -->
+    <xacro:shaft_link name="front_left" radius="${shaft_radius}" lenght="${shaft_lenght}" mass="${shaft_mass}" color="Black">
+      <origin xyz="0 ${shaft_half_lenght} 0" rpy="${ROTATE_90_DEGREES} 0 0" />
+    </xacro:shaft_link>
+
+<!-- Invoke shaft_joint macros for the back left shaft -->
+    <xacro:shaft_joint name="back_left">
+      <origin xyz="${-shaft_x_offset} ${shaft_y_offset} ${shaft_z_offset}" rpy="0 0 0" />
+    </xacro:shaft_joint>
+
+<!-- Invoke shaft_link macros for the back left shaft -->
+    <xacro:shaft_link name="back_left" radius="${shaft_radius}" lenght="${shaft_lenght}" mass="${shaft_mass}" color="Black">
+      <origin xyz="0 ${shaft_half_lenght} 0" rpy="${ROTATE_90_DEGREES} 0 0" />
+    </xacro:shaft_link>
+
+<!-- Invoke shaft_joint macros for the front right shaft -->
+    <xacro:shaft_joint name="front_right">
+      <origin xyz="${shaft_x_offset} ${-shaft_y_offset} ${shaft_z_offset}" rpy="0 0 0" />
+    </xacro:shaft_joint>
+
+<!-- Invoke shaft_link macros for the front right shaft -->
+    <xacro:shaft_link name="front_right" radius="${shaft_radius}" lenght="${shaft_lenght}" mass="${shaft_mass}" color="Black">
+      <origin xyz="0 ${-shaft_half_lenght} 0" rpy="${ROTATE_90_DEGREES} 0 0" />
+    </xacro:shaft_link>
+
+<!-- Invoke shaft_joint macros for the back right shaft -->
+    <xacro:shaft_joint name="back_right">
+      <origin xyz="${-shaft_x_offset} ${-shaft_y_offset} ${shaft_z_offset}" rpy="0 0 0" />
+    </xacro:shaft_joint>
+
+<!-- Invoke shaft_link macros for the back right shaft -->
+    <xacro:shaft_link name="back_right" radius="${shaft_radius}" lenght="${shaft_lenght}" mass="${shaft_mass}" color="Black">
+      <origin xyz="0 ${-shaft_half_lenght} 0" rpy="${ROTATE_90_DEGREES} 0 0" />
+    </xacro:shaft_link>
+
+
+  <!-- Invoke Wheel Macros -->
+
+  <xacro:mecanum_wheel_152 name="arche_mb_mecanum_wheel_front_left" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
+      mesh_file_name="package://archie_simulation/robots/arche_mb/meshes/mecanum_wheel_left.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
+      mesh_scale_y="${0.92*SCALE_mm_to_m}" mesh_scale_z="${1.52*SCALE_mm_to_m}">
+    <origin xyz="${left_front_wheel_x_offset} ${left_front_wheel_y_offset+shaft_lenght} ${left_front_wheel_z_offset}" rpy="0 0 0" />
+  </xacro:mecanum_wheel_152>
+
+  <xacro:mecanum_wheel_152 name="arche_mb_mecanum_wheel_front_right" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
+      mesh_file_name="package://archie_simulation/robots/arche_mb/meshes/mecanum_wheel_right.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
+      mesh_scale_y="${0.92*SCALE_mm_to_m}" mesh_scale_z="${1.52*SCALE_mm_to_m}">
+    <origin xyz="${left_front_wheel_x_offset} ${-(left_front_wheel_y_offset+shaft_lenght)} ${left_front_wheel_z_offset}" rpy="0 0 0" />
+  </xacro:mecanum_wheel_152>
+
+  <xacro:mecanum_wheel_152 name="arche_mb_mecanum_wheel_back_left" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
+      mesh_file_name="package://archie_simulation/robots/arche_mb/meshes/mecanum_wheel_left.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
+      mesh_scale_y="${0.92*SCALE_mm_to_m}" mesh_scale_z="${1.52*SCALE_mm_to_m}">
+    <origin xyz="${-left_front_wheel_x_offset} ${left_front_wheel_y_offset+shaft_lenght} ${left_front_wheel_z_offset}" rpy="0 0 0" />
+  </xacro:mecanum_wheel_152>
+
+  <xacro:mecanum_wheel_152 name="arche_mb_mecanum_wheel_back_right" parent="base_footprint" diameter="${wheel_diameter}" width="${wheel_width}" mass="${wheel_weight}" color="White"
+      mesh_file_name="package://archie_simulation/robots/arche_mb/meshes/mecanum_wheel_right.STL" mesh_scale_x="${1*SCALE_mm_to_m}"
+      mesh_scale_y="${0.92*SCALE_mm_to_m}" mesh_scale_z="${1.52*SCALE_mm_to_m}">
+    <origin xyz="${-left_front_wheel_x_offset} ${-(left_front_wheel_y_offset+shaft_lenght)} ${left_front_wheel_z_offset}" rpy="0 0 0" />
+  </xacro:mecanum_wheel_152>
+
+<!--Docking adapter Macro  -->
+  <xacro:docking_adapter name="docking_adapter" parent="base_link">
+    <origin xyz="-0.300 0 0.320" rpy="0 0 -1.57" />
+  </xacro:docking_adapter>
+
+
+<!-- ####################### -->
+
+  <!-- Sensors -->
+  <!-- <xacro:fixed_joint name="rplidar_a2_laser_beam_joint" parent_name="electronics_box" child_name="rplidar_a2_laser_beam_link" color="Red">
+    <origin xyz="${rplidar_a2_laser_beam_joint_x_offset} ${rplidar_a2_laser_beam_joint_y_offset} ${electronics_box_height}" rpy="0 0 ${ROTATE_180_DEGREES}" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="rplidar_a2_laser_beam_link" lenght="${0.041}" width="${0.041}" height="${0.001}" mass="${0.005}" color="Blue">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link> -->
+
+  <!-- <xacro:fixed_joint name="rplidar_a2_laser_beam_fom_base_link_joint" parent_name="base_link" child_name="rplidar_a2_laser_beam_fom_base_link_link" color="Red">
+    <origin xyz="${rplidar_a2_laser_beam_joint_x_offset} ${rplidar_a2_laser_beam_joint_y_offset} ${230.7*SCALE_mm_to_m}" rpy="0 0 ${ROTATE_180_DEGREES}" />
+  </xacro:fixed_joint>
+
+  <xacro:box_link name="rplidar_a2_laser_beam_fom_base_link_link" lenght="${0.060}" width="${0.02}" height="${0.001}" mass="${0.005}" color="Green">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:box_link> -->
+
+<!--  **** RP LIDAR A2 **** -->
+<!-- ! The Joint is positioned at the laser beam plane, which is offset 30.8 mm from the electronics box top-->
+<joint name="rplidar_joint" type="fixed"> <!-- Seting the joint at the laser beam plane -->
+    <axis xyz="0 1 0" />
+    <!-- <origin xyz="0.02 0 0.058" rpy="0 0 3.14"/> -->
+    <origin xyz="${rplidar_a2_laser_beam_joint_x_offset} ${rplidar_a2_laser_beam_joint_y_offset} ${rplidar_a2_laser_beam_joint_z_offset}" rpy="${rplidar_a2_laser_beam_joint_roll} ${rplidar_a2_laser_beam_joint_pitch} ${rplidar_a2_laser_beam_joint_yaw}" />
+    <parent link="electronics_box"/>
+    <child link="laser"/>
+  </joint>
+
+  <!-- rplidar Laser -->
+  <link name="laser">
+    <collision> 
+      <origin xyz="0 0 -0.0308" rpy="1.5707 0 4.71"/> <!-- Move the mesh down on Z axis, as the joint is at the laser beam plane -->
+      <geometry> 
+        <mesh filename="package://archie_simulation/robots/arche_mb/meshes/rplidar.dae" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 -0.0308" rpy="1.5707 0 4.71"/>
+      <geometry>
+        <mesh filename="package://archie_simulation/robots/arche_mb/meshes/rplidar.dae" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 -0.0308" rpy="1.5707 0 4.71"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+  </link>
+
+<!-- COMMENT THE FORMER SICK LIDARS -->
+  <!-- <xacro:sick_laser_v0 name="lidar_1" parent="base_link" ros_topic="lidar_1/scan_filtered">
+    <origin xyz="0.442 0 0.372" rpy="0 0 0" />
+  </xacro:sick_laser_v0>
+
+  <xacro:sick_laser_v0 name="lidar_2" parent="base_link" ros_topic="lidar_2/scan_filtered">
+    <origin xyz="-0.442 0 0.372" rpy="0 0 3.14" />
+  </xacro:sick_laser_v0> -->
+
+
+
+  <!--+++++++++++++++++++ IMU ++++++++++++++++++++++++-->
+  <!-- Comment or uncomment based on your requirement -->
+  <!-->
+  <xacro:imu name="imu" parent="base_link">
+    <origin xyz="0.100 0 0.300" rpy="0 0 3.14" />
+  </xacro:imu>
+  <-->
+
+  <!--+++++++++++++++++++ Ultra Sonic ++++++++++++++++++++++++-->
+  <!-- Comment or uncomment based on your requirement -->
+  <!-- SENSOR 1 --> 
+  <!-->
+  <xacro:us_sensor name="us_1" parent="base_link">
+    <origin xyz="0.100 0 0.500" rpy="0 3.14 3.14" />
+  </xacro:us_sensor>
+  <-->
+  <!-- SENSOR 2 --> 
+  <!-- xacro:us_sensor name="us_2" parent="base_link">
+    <origin xyz="0.110 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 3 --> 
+  <!-- xacro:us_sensor name="us_3" parent="base_link">
+    <origin xyz="0.120 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 4 --> 
+  <!-- xacro:us_sensor name="us_4" parent="base_link">
+    <origin xyz="0.130 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 5 --> 
+  <!-- xacro:us_sensor name="us_5" parent="base_link">
+    <origin xyz="0.140 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 6 --> 
+  <!-- xacro:us_sensor name="us_6" parent="base_link">
+    <origin xyz="0.150 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 7 --> 
+  <!-- xacro:us_sensor name="us_7" parent="base_link">
+    <origin xyz="0.160 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 8 --> 
+  <!-- xacro:us_sensor name="us_8" parent="base_link">
+    <origin xyz="0.170 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 9 --> 
+  <!-- xacro:us_sensor name="us_9" parent="base_link">
+    <origin xyz="0.180 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 10 --> 
+  <!-- xacro:us_sensor name="us_10" parent="base_link">
+    <origin xyz="0.100 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 11 --> 
+  <!-- xacro:us_sensor name="us_11" parent="base_link">
+    <origin xyz="0.100 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 12 --> 
+  <!-- xacro:us_sensor name="us_12" parent="base_link">
+    <origin xyz="0.190 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 13 --> 
+  <!-- xacro:us_sensor name="us_13" parent="base_link">
+    <origin xyz="0.200 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 14 --> 
+  <!-- xacro:us_sensor name="us_14" parent="base_link">
+    <origin xyz="0.210 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 15 --> 
+  <!-- xacro:us_sensor name="us_15" parent="base_link">
+    <origin xyz="0.220 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+  <!-- SENSOR 16 --> 
+  <!-- xacro:us_sensor name="us_16" parent="base_link">
+    <origin xyz="0.230 0 0.300" rpy="0 3.14 3.14" />
+  </xacro:us_sensor-->
+    
+  <!--Camera  -->
+<!-- <xacro:camera name="camera" parent="base_link">
+    <origin xyz="0 0 0.38" rpy="0 0 0" />
+  </xacro:camera> -->
+
+  <!-- Depth Camera -->
+  <xacro:depth_camera name="camera" parent="base_link">
+    <origin xyz="-0.228 0.015 0.461" rpy="0 0 3.14159" />
+  </xacro:depth_camera>
+
+
+
+  <!-- TRANSMISSIONS -->
+
+  <transmission name="arche_mb_mecanum_wheel_front_left">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="arche_mb_mecanum_wheel_front_left_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arche_mb_mecanum_wheel_front_left_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="arche_mb_mecanum_wheel_front_right">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="arche_mb_mecanum_wheel_front_right_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arche_mb_mecanum_wheel_front_right_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="arche_mb_mecanum_wheel_back_left">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="arche_mb_mecanum_wheel_back_left_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arche_mb_mecanum_wheel_back_left_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="arche_mb_mecanum_wheel_back_right">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="arche_mb_mecanum_wheel_back_right_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arche_mb_mecanum_wheel_back_right_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  
+</robot>

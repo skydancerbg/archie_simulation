@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="fixed_joint" params="name parent child *origin">
+    <joint name="${name}" type="fixed">
+        <parent link="${parent}"/>
+        <child link="${child}"/>
+        <xacro:insert_block name="origin" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="continuous_joint" params="name parent child *origin">
+    <joint name="${name}" type="continuous">
+        <parent link="${parent}"/>
+        <child link="${child}"/>
+        <xacro:insert_block name="origin" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="box_link" params="name lenght width height mass color *origin">
+    <link name="${name}">
+        <visual>
+        <origin xyz="0 0 ${height/2}" rpy="0 0 0" />
+        <geometry>
+            <box size="${lenght} ${width} ${height}"/>
+        </geometry>
+        <material name="${color}" />
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="${lenght} ${width} ${height}"/>
+            </geometry>
+        </collision>
+
+        <!-- Ivoke box_inertial_with_origin macro -->
+        <xacro:box_inertial_with_origin x="${lenght}" y="${width}" z="${height}" mass="${mass}">
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </xacro:box_inertial_with_origin>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="cylinder_link" params="name radius lenght mass color *origin">
+    <link name="${name}_link">
+        <visual>
+            <xacro:insert_block name="origin" />
+            <geometry>
+            <cylinder radius="${radius}" length="${lenght}"/>
+            </geometry>
+            <material name="${color}" />
+        </visual>
+
+        <collision>
+            <xacro:insert_block name="origin" />
+            <geometry>
+                <cylinder radius="${radius}" length="${lenght}"/>
+            </geometry>
+        </collision>
+    
+        <!-- Ivoke box_inertial_with_origin macro -->    
+        <xacro:cylinder_inertial_with_origin radius="${radius}" length="${lenght}" mass="${mass}">
+            <xacro:insert_block name="origin" />
+        </xacro:cylinder_inertial_with_origin>
+    </link>
+  </xacro:macro>
+
+
+
+  <!-- **** RP LIDAR A2 **** -->
+  <!-- SHOULD Z ROTATE THE LIDAR JOINT 180 !!!  -->
+  <!-- <joint name="rplidar_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.02 0 0.058" rpy="0 0 3.14"/>
+    <parent link="base_link"/>
+    <child link="laser"/>
+  </joint> -->
+
+    <!-- ! USE THIS ORIGIN TO ALLIGN THE DAE VISUAL: -->
+    <!-- <origin xyz="0 0 0" rpy="1.5707 0 4.71"/> -->
+<!--     
+  <xacro:macro name="rplidar_a2" params="name *origin">
+  <link name="${name}_link">
+    <visual>
+    <xacro:insert_block name="origin" />
+      <geometry>
+        <mesh filename="package://robco_4wd_mecanum_description/meshes/rplidar.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual> 
+    <collision>
+    <xacro:insert_block name="origin" />
+      <geometry>
+        <mesh filename="package://robco_4wd_mecanum_description/meshes/rplidar.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>  
+    <inertial>
+      <mass value="1e-5" />
+      <xacro:insert_block name="origin" />
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+  </link> 
+  </xacro:macro>     -->
+
+</robot>
+  
+  <!-- <link name="${name}">
+    <collision name="${name}_collision">
+      <origin xyz="${x} ${y} ${z}" rpy="${roll} ${pitch} ${yaw}"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+    </collision>
+    <visual name="${name}_visual">
+      <origin xyz="0 0 0" rpy="0 ${pitch} ${yaw}"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+       <material name="${color}"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 ${pitch} ${yaw}"/>
+      <mass value="${wheel_mass}"/>
+      <inertia
+        ixx=".1" ixy="0.0" ixz="0.0"
+        iyy=".1" iyz="0.0"
+        izz=".1"/>
+    </inertial>
+  </link>     -->
+  
+
+
+  
+  
+  
+  
+  
+  
+  
