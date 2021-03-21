@@ -1,16 +1,31 @@
 <?xml version="1.0"?>
 <robot name="archie_mw" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<!-- TODO Is this gravity and self colide needed????????????????/ -->
+  <!-- All static links get collapsed down to base_link in Gazebo, so that's
+       the one to apply the colour to (in Gazebo 5+). -->
+
+ <!-- !NOTE base_link acts as base_frame in this project!!! Reverse them later!!! -->
   <gazebo reference="base_link">
+    <material>Gazebo/Yellow</material>
     <gravity>true</gravity>
-    <self_collide>false</self_collide>
+  </gazebo>
+<!-- TODO Is this gravity and self colide needed????????????????/ -->  
+    <!-- <gazebo reference="base_link">
+        <gravity>true</gravity>
+        <self_collide>false</self_collide>
+    </gazebo> -->
+
+ <!-- !NOTE base_footprint represents the chassis this project!!! -->
+<!-- CHASSIS  -->
+    <!-- <gazebo reference="base_footprint">
+        <material>Gazebo/DarkGrey</material>
+        <gravity>true</gravity>
+    </gazebo> -->
+
+  <gazebo reference="base_footprint">
+    <material>Gazebo/DarkGrey</material>
   </gazebo>
 
-<!-- CHASSIS  -->
-  <gazebo reference="base_footprint">
-    <material>Gazebo/Grey</material>
-  </gazebo>
 
 <!-- ELECTRONICS BOX  -->
   <gazebo reference="electronics_box">
@@ -55,8 +70,10 @@
   </gazebo>  
 
 <!-- WHEELS  --> 
+<!-- !######### WHEELS - Gazebo  mu1, mu2 and material are defined in 
+     ! mecanum_wheel.xacro -->
 
-  <gazebo reference="archie_mw_mecanum_wheel_front_left_link">
+  <!-- <gazebo reference="archie_mw_mecanum_wheel_front_left_link">
     <material>Gazebo/Grey</material>
   </gazebo>
 
@@ -70,7 +87,7 @@
 
   <gazebo reference="archie_mw_mecanum_wheel_back_right_link">
     <material>Gazebo/Grey</material>
-  </gazebo>
+  </gazebo> -->
 
 
   <!-- Lidar sensors -->
@@ -212,7 +229,9 @@
     <sensor type="camera" name="camera2">
       <update_rate>30.0</update_rate>
       <camera name="head">
-        <horizontal_fov>1.3962634</horizontal_fov>
+        <!-- <horizontal_fov>1.3962634</horizontal_fov> -->
+        <!-- !Copied from the depth camera values??? -->
+      <hfov>70</hfov>
         <image>
           <width>800</width>
           <height>800</height>

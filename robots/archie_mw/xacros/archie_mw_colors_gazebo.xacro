@@ -1,36 +1,6 @@
 <?xml version="1.0"?>
 <robot name="archie_mw" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- All static links get collapsed down to base_link in Gazebo, so that's
-       the one to apply the colour to (in Gazebo 5+). -->
 
- <!-- !NOTE base_link acts as base_frame in this project!!! Reverse them later!!! -->
-  <!-- <gazebo reference="base_link">
-    <material>Gazebo/Yellow</material>
-    <gravity>true</gravity>
-  </gazebo> -->
-    <gazebo reference="base_link">
-        <gravity>true</gravity>
-        <self_collide>false</self_collide>
-        <material>Gazebo/Yellow</material>
-    </gazebo>
-
- <!-- !NOTE base_footprint represents the chassis this project!!! -->
-
-    <gazebo reference="base_footprint">
-        <material>Gazebo/DarkGrey</material>
-        <gravity>true</gravity>
-    </gazebo>
-
-  <!-- <gazebo reference="base_footprint">
-    <material>Gazebo/DarkGrey</material>
-  </gazebo> -->
-
-
-  <!-- <gazebo reference="electronics_module_link">
-    <material>Gazebo/Grey</material>
-  </gazebo> -->
-
-<!-- ######### WHEELS - Gazebo  mu1, mu2 and material are defined in mecanum_wheel.xacro -->
 
 </robot>

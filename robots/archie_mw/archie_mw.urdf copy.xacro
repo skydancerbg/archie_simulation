@@ -66,12 +66,10 @@
   </gazebo> -->
   <link name="base_link" />
 
-
-    <!-- color="Yellow" z_offset="${chassis_center_to_base_footprint_z_offset}"> -->
   <!-- Base link macro -->
   <xacro:archie_mw_base name="base_footprint" parent="base_link" lenght="${chassis_lenght}" 
     width="${chassis_width}" height="${chassis_height}" mass="${chassis_weight}" 
-    color="Yellow" z_offset="${chassis_bottom_z_offset}">
+    color="Yellow" z_offset="${chassis_center_to_base_footprint_z_offset}">
     <joint_origin xyz="0 0 0" rpy="0 0 0" />
   </xacro:archie_mw_base>
   
